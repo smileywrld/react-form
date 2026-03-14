@@ -3,31 +3,29 @@ import { FaFileAlt } from "react-icons/fa";
 export default function Navbar() {
 	const today = new Date().toLocaleDateString();
 	return (
-		<div className="min-h-screen p-6">
-			<div className="bg-white rounded-xl shadow-md p-6">
-				{/* Top Section */}
-				<div className="flex items-center gap-3 mb-4">
-					<FaFileAlt className="text-blue-600 text-2xl" />
-					<h1 className="text-lg font-semibold text-gray-800">
-						Clinical Psychologist Intake Form
-					</h1>
-				</div>
+		<div className="bg-white rounded-xl shadow-md p-6 mb-3">
+			{/* Top Section */}
+			<div className="flex items-center gap-3 mb-4">
+				<FaFileAlt className="text-blue-600 text-2xl" />
+				<h1 className="text-lg font-semibold text-gray-800">
+					Clinical Psychologist Intake Form
+				</h1>
+			</div>
 
-				{/* Bottom Section */}
-				<div className="flex justify-between text-sm text-gray-600">
-					<p>
-						Case:{" "}
-						<span className="text-blue-600 font-medium">CASE-308101</span>
-					</p>
+			{/* Bottom Section */}
+			<div className="flex justify-between text-sm text-gray-600">
+				<p>
+					Case:{" "}
+					<span className="text-blue-600 font-medium">CASE-308101</span>
+				</p>
 
-					<p>
-						PIC: <span className="">Not Set</span>
-					</p>
+				<p>
+					PIC: <span className="">Not Set</span>
+				</p>
 
-					<p>
-						Date: <span className="text-gray-700">{today}</span>
-					</p>
-				</div>
+				<p>
+					Date: <span className="text-gray-700">{today}</span>
+				</p>
 			</div>
 		</div>
 	);
