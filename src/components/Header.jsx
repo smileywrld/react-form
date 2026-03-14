@@ -1,5 +1,4 @@
 import React from "react";
-import ProgressBasic from "./ProgressBar";
 const Header = () => {
 	return (
 		<div className="bg-white rounded-xl shadow-md p-6">
@@ -11,8 +10,6 @@ const Header = () => {
 
 				<p className="text-gray-500">50% Complete</p>
 			</div>
-
-			<ProgressBasic />
 		</div>
 	);
 };
