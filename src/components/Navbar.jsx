@@ -1,6 +1,7 @@
 import { FaFileAlt } from "react-icons/fa";
 
 export default function Navbar() {
+	const today = new Date().toLocaleDateString();
 	return (
 		<div className="min-h-screen p-6">
 			<div className="bg-white rounded-xl shadow-md p-6">
@@ -24,7 +25,7 @@ export default function Navbar() {
 					</p>
 
 					<p>
-						Date: <span className="text-gray-700">3/13/2026</span>
+						Date: <span className="text-gray-700">{today}</span>
 					</p>
 				</div>
 			</div>
