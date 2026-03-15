@@ -1,4 +1,5 @@
 import React from "react";
+import BasicInformation from "./BasicInformation";
 const Header = () => {
 	return (
 		<div className="bg-white rounded-xl shadow-md p-6">
@@ -19,6 +20,8 @@ const Header = () => {
 					Case Type Selection
 				</button>
 			</div>
+
+			<BasicInformation />
 		</div>
 	);
 };
