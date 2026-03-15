@@ -32,7 +32,7 @@ const BasicInformation = () => {
 			</div>
 
 			<form autoComplete="off" className="flex">
-				<div className="flex gap-5">
+				<div className="flex gap-5 w-full">
 					<div className="flex flex-col gap-1 w-1/3">
 						<label htmlFor="caseID" className="text-[#364153]">
 							Case ID <span className="text-red-600">*</span>
@@ -47,29 +47,29 @@ const BasicInformation = () => {
 						/>
 					</div>
 
-					<div className="flex flex-col gap-1">
-						<label htmlFor="caseID" className="text-[#364153]">
-							Case ID <span className="text-red-600">*</span>
+					<div className="flex flex-col gap-1 w-1/3">
+						<label htmlFor="picName" className="text-[#364153]">
+							PIC Name <span className="text-red-600">*</span>
 						</label>
 						<input
 							name="caseID"
 							onChange={formik.handleChange}
-							value={formik.values.caseID}
-							placeholder="Auto Generated"
+							value={formik.values.picName}
+							placeholder="Person in charge"
 							type="text"
 							className="border px-2 py-1 rounded-sm border-[#576172]"
 						/>
 					</div>
 
-					<div className="flex flex-col gap-1">
+					<div className="flex flex-col gap-1 w-1/3">
 						<label htmlFor="caseID" className="text-[#364153]">
-							Case ID <span className="text-red-600">*</span>
+							PIC Age <span className="text-red-600">*</span>
 						</label>
 						<input
-							name="caseID"
+							name="picAge"
 							onChange={formik.handleChange}
-							value={formik.values.caseID}
-							placeholder="Auto Generated"
+							value={formik.values.picAge}
+							placeholder="Age"
 							type="text"
 							className="border px-2 py-1 rounded-sm border-[#576172]"
 						/>
