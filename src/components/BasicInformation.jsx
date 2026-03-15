@@ -107,32 +107,35 @@ const BasicInformation = () => {
 							Sex <span className="text-red-600">*</span>
 						</label>
 						<div className="flex gap-4 mt-2">
-							<label>
+							<label className="text-[#364153]">
 								<input
 									type="radio"
 									name="sex"
 									value="Male"
 									onChange={formik.handleChange}
+									className="mx-1"
 								/>
 								 Male
 							</label>
 
-							<label>
+							<label className="text-[#364153]">
 								<input
 									type="radio"
 									name="sex"
 									value="Female"
 									onChange={formik.handleChange}
+									className="mx-1"
 								/>
 								 Female
 							</label>
 
-							<label>
+							<label className="text-[#364153]">
 								<input
 									type="radio"
 									name="sex"
 									value="Other"
 									onChange={formik.handleChange}
+									className="mx-1"
 								/>
 								 Other
 							</label>
