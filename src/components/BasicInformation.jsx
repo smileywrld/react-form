@@ -4,7 +4,19 @@ import { useFormik } from "formik";
 const BasicForm = () => {
 	const formik = useFormik({
 		initialValues: {
-			email: "",
+			caseID: "",
+			picName: "",
+			picAge: "",
+			fullName: "",
+			Age: "",
+			Sex: "",
+			Ethnicity: "",
+			Birthday: "",
+			ConsultantDate: "",
+			EmergContact: "",
+			EmergContact2: "",
+			Referral: "",
+			AssignedPyshc: "",
 		},
 	});
 };
@@ -24,11 +36,16 @@ const BasicInformation = () => {
 			</div>
 
 			<form autoComplete="off" className="flex">
-				<div className="flex flex-col">
+				<div className="flex flex-col gap-1">
 					<label htmlFor="caseID" className="text-[#364153]">
 						Case ID <span className="text-red-600">*</span>
 					</label>
-					<input type="text" className="border"/>
+					<input
+						value={formik.values.caseID}
+						placeholder="Auto Generated"
+						type="text"
+						className="border px-2 py-1 rounded-sm border-[#576172]"
+					/>
 				</div>
 			</form>
 		</div>
