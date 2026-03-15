@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 
-const BasicForm = () => {
+const BasicInformation = () => {
 	const formik = useFormik({
 		initialValues: {
 			caseID: "",
@@ -19,11 +19,7 @@ const BasicForm = () => {
 			AssignedPyshc: "",
 		},
 	});
-};
 
-console.log(BasicForm);
-
-const BasicInformation = () => {
 	return (
 		<div>
 			<div className="my-5">
@@ -41,6 +37,8 @@ const BasicInformation = () => {
 						Case ID <span className="text-red-600">*</span>
 					</label>
 					<input
+						name="caseID"
+						onChange={formik.handleChange}
 						value={formik.values.caseID}
 						placeholder="Auto Generated"
 						type="text"
