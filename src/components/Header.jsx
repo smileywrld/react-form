@@ -10,6 +10,15 @@ const Header = () => {
 
 				<p className="text-gray-500">50% Complete</p>
 			</div>
+
+			<div className="flex gap-3 mt-4">
+				<button className="btn border p-1 rounded-md bg-[#E0E7FF] border-[#A3B3FF] text-[#432DD7]">
+					Basic Information
+				</button>
+				<button className="btn p-1 rounded-md bg-[#F3F4F6] text-[#4A5565]">
+					Case Type Selection
+				</button>
+			</div>
 		</div>
 	);
 };
