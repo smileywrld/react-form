@@ -31,7 +31,7 @@ const BasicInformation = () => {
 				<hr className="border-[#F3F4F6] mt-3"></hr>
 			</div>
 
-			<form autoComplete="off" className="flex">
+			<form autoComplete="off" className="flex flex-col">
 				<div className="flex gap-5 w-full">
 					<div className="flex flex-col gap-1 w-1/3">
 						<label htmlFor="caseID" className="text-[#364153]">
@@ -73,6 +73,70 @@ const BasicInformation = () => {
 							type="text"
 							className="border px-2 py-1 rounded-sm border-[#576172]"
 						/>
+					</div>
+				</div>
+
+				<div className="mt-5 flex flex-col gap-1">
+					<label htmlFor="fullName" className="text-[#364153]">
+						Client Full Name <span className="text-red-600">*</span>
+					</label>
+					<input
+						name="fullName"
+						onChange={formik.handleChange}
+						value={formik.values.fullName}
+						className="w-full border px-2 py-1 rounded-sm border-[#576172]"
+						placeholder="Full name"
+					/>
+				</div>
+
+				<div className="grid grid-cols-2 gap-4 mt-3">
+					<div>
+						<label htmlFor="Age" className="text-[#364153]">
+							Age <span className="text-red-600">*</span>
+						</label>
+						<input
+							name="age"
+							onChange={formik.handleChange}
+							value={formik.values.Age}
+							className="w-full px-3 py-2 border rounded-sm border-[#576172]"
+						/>
+					</div>
+
+					<div>
+						<label htmlFor="Sex" className="text-[#364153]">
+							Sex <span className="text-red-600">*</span>
+						</label>
+						<div className="flex gap-4 mt-2">
+							<label>
+								<input
+									type="radio"
+									name="sex"
+									value="Male"
+									onChange={formik.handleChange}
+								/>
+								 Male
+							</label>
+
+							<label>
+								<input
+									type="radio"
+									name="sex"
+									value="Female"
+									onChange={formik.handleChange}
+								/>
+								 Female
+							</label>
+
+							<label>
+								<input
+									type="radio"
+									name="sex"
+									value="Other"
+									onChange={formik.handleChange}
+								/>
+								 Other
+							</label>
+						</div>
 					</div>
 				</div>
 			</form>
