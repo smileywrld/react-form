@@ -4,8 +4,7 @@ import { useFormik } from "formik";
 import CasePicSection from "./BasicInformation/CasePicSection";
 import ClientDetailsSection from "./BasicInformation/ClientDetailsSection";
 import DemographicsSection from "./BasicInformation/DemographicsSection";
-import DatesSection from "./BasicInformation/DatesSection";
-import EmergencyContactsSection from "./BasicInformation/EmergencyContactsSection";
+import EmergencyContactsSection from "./BasicInformation/EmergencySection";
 import ReferralSection from "./BasicInformation/ReferralSection";
 import AssignedPsychologistSection from "./BasicInformation/AssignedPsychologistSection";
 
@@ -45,7 +44,7 @@ const BasicInformation = () => {
 				<ClientDetailsSection formik={formik} />
 				<DemographicsSection formik={formik} />
 				<DatesSection formik={formik} />
-				<EmergencyContactsSection formik={formik} />
+				<EmergencySection formik={formik} />
 				<ReferralSection formik={formik} />
 				<AssignedPsychologistSection formik={formik} />
 			</form>
@@ -53,4 +52,4 @@ const BasicInformation = () => {
 	);
 };
 
-export default BasicInformation;
+export default EmergencyContactsSection;

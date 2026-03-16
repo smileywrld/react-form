@@ -3,55 +3,88 @@ import React from "react";
 const DemographicsSection = ({ formik }) => {
 	return (
 		<>
-			<div className="grid grid-cols-2 gap-4 mt-5">
+			{/* Ethnicity */}
+			<div>
+				<label className="block text-gray-700 mt-5">
+					Ethnicity <span className="text-red-600">*</span>
+				</label>
+				<div className="flex gap-4 mt-2 flex-wrap">
+					<label className="text-[#364153] flex items-center">
+						<input
+							type="radio"
+							name="ethnicity"
+							value="Malay"
+							checked={formik.values.ethnicity === "Malay"}
+							onChange={formik.handleChange}
+							className="mx-1"
+						/>
+						Malay
+					</label>
 
-				<div>
-					<label>Age *</label>
-					<input
-						name="age"
-						type="number"
-						onChange={formik.handleChange}
-						value={formik.values.age}
-						className="w-full border px-3 py-2"
-					/>
-				</div>
+					<label className="text-[#364153] flex items-center">
+						<input
+							type="radio"
+							name="ethnicity"
+							value="Chinese"
+							checked={formik.values.ethnicity === "Chinese"}
+							onChange={formik.handleChange}
+							className="mx-1"
+						/>
+						Chinese
+					</label>
 
-				<div>
-					<label>Sex *</label>
+					<label className="text-[#364153] flex items-center">
+						<input
+							type="radio"
+							name="ethnicity"
+							value="Indians"
+							checked={formik.values.ethnicity === "Indians"}
+							onChange={formik.handleChange}
+							className="mx-1"
+						/>
+						Indians
+					</label>
 
-					<div className="flex gap-4 mt-1">
-						{["Male", "Female", "Other"].map((sex) => (
-							<label key={sex}>
-								<input
-									type="radio"
-									name="sex"
-									value={sex}
-									checked={formik.values.sex === sex}
-									onChange={formik.handleChange}
-								/>
-								{sex}
-							</label>
-						))}
-					</div>
+					<label className="text-[#364153] flex items-center">
+						<input
+							type="radio"
+							name="ethnicity"
+							value="Others"
+							checked={formik.values.ethnicity === "Others"}
+							onChange={formik.handleChange}
+							className="mx-1"
+						/>
+						Others
+					</label>
 				</div>
 			</div>
 
-			<div className="mt-5">
-				<label>Ethnicity *</label>
+			{/* Birthday and Consultation Date */}
+			<div className="flex w-full mt-5 justify-between gap-4">
+				<div className="w-1/2">
+					<label className="block text-sm font-medium text-gray-700">
+						Birthday <span className="text-red-600">*</span>
+					</label>
+					<input
+						name="birthday"
+						type="date"
+						onChange={formik.handleChange}
+						value={formik.values.birthday}
+						className="px-3 py-2 border border-[#576172] mt-1 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm w-full"
+					/>
+				</div>
 
-				<div className="flex gap-4 mt-2">
-					{["Malay", "Chinese", "Indians", "Others"].map((eth) => (
-						<label key={eth}>
-							<input
-								type="radio"
-								name="ethnicity"
-								value={eth}
-								checked={formik.values.ethnicity === eth}
-								onChange={formik.handleChange}
-							/>
-							{eth}
-						</label>
-					))}
+				<div className="w-1/2">
+					<label className="block text-sm font-medium text-gray-700">
+						1st Consultation Date <span className="text-red-600">*</span>
+					</label>
+					<input
+						name="consultationDate"
+						type="date"
+						onChange={formik.handleChange}
+						value={formik.values.consultationDate}
+						className="px-3 py-2 border border-[#576172] mt-1 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm w-full"
+					/>
 				</div>
 			</div>
 		</>
