@@ -266,16 +266,14 @@ const BasicInformation = () => {
 					</div>
 				</div>
 
-				{/* Referral & Assigned Psychologist */}
-				{/* Referral & Assigned Psychologist */}
-				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+				<div className="grid lg:grid-cols-1 gap-6 md:grid-cols-2">
 					{/* Referral Source */}
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className=" text-sm font-medium text-gray-700 mb-2">
 							Referral Source <span className="text-red-600">*</span>
 						</label>
 
-						<div className="space-y-2">
+						<div className="space-y-2 flex gap-2">
 							<div className="flex items-center">
 								<input
 									type="radio"
@@ -400,11 +398,6 @@ const BasicInformation = () => {
 								)}
 							</div>
 						</div>
-						<ErrorMessage
-							name="referralSource"
-							component="div"
-							className="mt-1 text-xs text-red-600"
-						/>
 					</div>
 
 					{/* Assigned Psychologist */}
