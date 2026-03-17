@@ -7,6 +7,7 @@ import ClientDetailsSection from "./BasicInformation/ClientDetailsSection";
 import DemographicsSection from "./BasicInformation/DemographicsSection";
 import EmergencySection from "./BasicInformation/EmergencySection";
 import ReferralSection from "./BasicInformation/ReferralSection";
+import AssignedPsychologistSection from "./BasicInformation/AssignedPsychologistSection";
 
 const defaultFormData = {
 	caseID: "",
@@ -66,6 +67,7 @@ const BasicInformation = forwardRef(({ formData, onFormDataChange }, ref) => {
 				<DemographicsSection formik={formik} />
 				<EmergencySection formik={formik} />
 				<ReferralSection formik={formik} />
+				<AssignedPsychologistSection formik={formik} />
 			</form>
 		</div>
 	);
