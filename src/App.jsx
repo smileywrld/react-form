@@ -8,7 +8,7 @@ function App() {
 		<div className="bg-gray-200 h-fit p-20">
 			<Navbar />
 			<Header />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }
