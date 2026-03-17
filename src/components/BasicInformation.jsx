@@ -4,7 +4,8 @@ import { useFormik } from "formik";
 import CasePicSection from "./BasicInformation/CasePicSection";
 import ClientDetailsSection from "./BasicInformation/ClientDetailsSection";
 import DemographicsSection from "./BasicInformation/DemographicsSection";
-import EmergencyContactsSection from "./BasicInformation/EmergencySection";
+import DatesSection from "./BasicInformation/DatesSection";
+import EmergencySection from "./BasicInformation/EmergencySection";
 import ReferralSection from "./BasicInformation/ReferralSection";
 import AssignedPsychologistSection from "./BasicInformation/AssignedPsychologistSection";
 
@@ -52,4 +53,4 @@ const BasicInformation = () => {
 	);
 };
 
-export default EmergencyContactsSection;
+export default BasicInformation;

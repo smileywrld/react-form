@@ -1,42 +1,81 @@
 import React from "react";
 
 const AssignedPsychologistSection = ({ formik }) => {
-	const psychs = [
-		{ label: "Ms. Lee Li Li", value: "ms-lee-li" },
-		{ label: "Ms. Hiew Yuk Wei", value: "ms-hiew" },
-		{ label: "Other", value: "other" },
-	];
-
 	return (
-		<div className="mt-5">
-			<label>Assigned Psychologist *</label>
+		<div>
+			<label className="block text-sm font-medium text-gray-700 mb-2">
+				Assigned Psychologist <span className="text-red-600">*</span>
+			</label>
+			<div className="space-y-2">
+				<div className="flex items-center">
+					<input
+						type="radio"
+						name="assignedPsychologist"
+						id="psychMsLee"
+						value="ms-lee-li"
+						checked={formik.values.assignedPsychologist === "ms-lee-li"}
+						onChange={formik.handleChange}
+						className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+					/>
+					<label
+						htmlFor="psychMsLee"
+						className="ml-2 block text-sm text-gray-700"
+					>
+						Ms. Lee Li Li
+					</label>
+				</div>
 
-			<div className="space-y-2 mt-2">
-				{psychs.map((p) => (
-					<label key={p.value} className="flex items-center gap-2">
+				<div className="flex items-center">
+					<input
+						type="radio"
+						name="assignedPsychologist"
+						id="psychMsHiew"
+						value="ms-hiew"
+						checked={formik.values.assignedPsychologist === "ms-hiew"}
+						onChange={formik.handleChange}
+						className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+					/>
+					<label
+						htmlFor="psychMsHiew"
+						className="ml-2 block text-sm text-gray-700"
+					>
+						Ms. Hiew Yuk Wei
+					</label>
+				</div>
+
+				<div className="flex items-start">
+					<div className="flex items-center">
 						<input
 							type="radio"
 							name="assignedPsychologist"
-							value={p.value}
-							checked={formik.values.assignedPsychologist === p.value}
+							id="psychOther"
+							value="other"
+							checked={formik.values.assignedPsychologist === "other"}
 							onChange={formik.handleChange}
+							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
 						/>
+						<label
+							htmlFor="psychOther"
+							className="ml-2 block text-sm text-gray-700"
+						>
+							Other
+						</label>
+					</div>
 
-						{p.label}
-					</label>
-				))}
+					{formik.values.assignedPsychologist === "other" && (
+						<div className="ml-6 mt-2 w-full">
+							<input
+								type="text"
+								name="assignedPsychologistOther"
+								value={formik.values.assignedPsychologistOther || ""}
+								onChange={formik.handleChange}
+								placeholder="Please specify..."
+								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+							/>
+						</div>
+					)}
+				</div>
 			</div>
-
-			{formik.values.assignedPsychologist === "other" && (
-				<input
-					type="text"
-					name="assignedPsychologistOther"
-					onChange={formik.handleChange}
-					value={formik.values.assignedPsychologistOther}
-					className="border mt-3 p-2 w-full"
-					placeholder="Please specify..."
-				/>
-			)}
 		</div>
 	);
 };
