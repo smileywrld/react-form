@@ -1,6 +1,5 @@
 import React from "react";
 import { useFormik } from "formik";
-import ProgressBar from "./ProgressBar";
 
 // Import sections
 import CasePicSection from "./BasicInformation/CasePicSection";
@@ -27,7 +26,7 @@ const defaultFormData = {
 	assignedPsychologistOther: "",
 };
 
-const BasicInformation = ({ formData, onFormDataChange, onNext }) => {
+const BasicInformation = React.forwardRef(({ formData, onFormDataChange }, ref) => {
 	const initialValues = React.useMemo(
 		() => ({ ...defaultFormData, ...(formData ?? {}) }),
 		[formData],
@@ -38,15 +37,15 @@ const BasicInformation = ({ formData, onFormDataChange, onNext }) => {
 		initialValues,
 		onSubmit: (values) => {
 			if (typeof onFormDataChange === "function") onFormDataChange(values);
-			if (typeof onNext === "function") onNext();
 		},
 	});
 
+	React.useImperativeHandle(ref, () => ({
+		submit: () => formik.submitForm(),
+	}));
+
 	return (
 		<div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow">
-			{/* Progress Bar */}
-			<ProgressBar currentStep={1} totalSteps={2} />
-
 			{/* Header Section */}
 			<div className="my-5">
 				<h2 className="text-lg font-semibold text-gray-800">
@@ -67,31 +66,11 @@ const BasicInformation = ({ formData, onFormDataChange, onNext }) => {
 				<DemographicsSection formik={formik} />
 				<EmergencySection formik={formik} />
 				<ReferralSection formik={formik} />
-
-				{/* Navigation Buttons */}
-				<div className="flex justify-between pt-6">
-					<button
-						type="button"
-						className="rounded-md border border-gray-300 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-					>
-						Previous
-					</button>
-					<button
-						type="button"
-						className="rounded-md border border-gray-300 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-					>
-						Save Draft
-					</button>
-					<button
-						type="submit"
-						className="rounded-md bg-indigo-600 px-8 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-					>
-						Next
-					</button>
-				</div>
 			</form>
 		</div>
 	);
-};
+});
+
+BasicInformation.displayName = "BasicInformation";
 
 export default BasicInformation;

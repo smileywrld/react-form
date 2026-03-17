@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import ProgressBar from "./ProgressBar";
+import React from "react";
 
 const CaseTypeSelection = ({
 	formData,
 	onFormDataChange,
-	onNext,
-	onPrevious,
 }) => {
-	const [selectedCase, setSelectedCase] = useState(formData.caseType || "");
+	const selectedCase = formData.caseType || "";
 
 	const caseTypes = [
 		{
@@ -39,9 +36,8 @@ const CaseTypeSelection = ({
 	];
 
 	const handleCaseSelect = (caseValue) => {
-		setSelectedCase(caseValue);
 		if (typeof onFormDataChange === "function") {
-			onFormDataChange({ ...formData, caseType: caseValue });
+			onFormDataChange({ caseType: caseValue });
 		}
 	};
 
@@ -71,9 +67,6 @@ const CaseTypeSelection = ({
 					</p>
 				</div>
 			</div>
-
-			{/* Progress Bar */}
-			<ProgressBar currentStep={2} totalSteps={2} />
 
 			{/* Section Title */}
 			<div className="my-5">
@@ -155,37 +148,6 @@ const CaseTypeSelection = ({
 							</div>
 						</div>
 					))}
-				</div>
-			</div>
-
-			{/* Navigation Buttons */}
-			<div className="flex justify-between mt-8 pt-4 border-t border-gray-200">
-				<button
-					type="button"
-					onClick={onPrevious}
-					className="px-6 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-				>
-					Previous
-				</button>
-				<div className="flex gap-3">
-					<button
-						type="button"
-						className="px-6 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-					>
-						Save Draft
-					</button>
-					<button
-						type="button"
-						onClick={onNext}
-						disabled={!selectedCase}
-						className={`px-6 py-2 rounded-md text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-							selectedCase
-								? "bg-indigo-600 hover:bg-indigo-700"
-								: "bg-gray-400 cursor-not-allowed"
-						}`}
-					>
-						Submit Form
-					</button>
 				</div>
 			</div>
 		</div>
