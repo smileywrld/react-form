@@ -1,4 +1,9 @@
-const ProgressBar = ({ currentStep, totalSteps = 2, stepLabels }) => {
+const ProgressBar = ({
+	currentStep,
+	totalSteps = 2,
+	stepLabels,
+	showLabels = true,
+}) => {
 	const safeTotalSteps = Math.max(1, totalSteps);
 	const safeCurrentStep = Math.min(Math.max(1, currentStep), safeTotalSteps);
 	const progress = (safeCurrentStep / safeTotalSteps) * 100;
@@ -7,22 +12,24 @@ const ProgressBar = ({ currentStep, totalSteps = 2, stepLabels }) => {
 	const lastLabel = stepLabels?.[safeTotalSteps - 1];
 
 	return (
-		<div className="w-full mb-6">
-			<div className="flex justify-between mb-2">
-				<span className="text-sm font-medium text-indigo-600">
-					Section {safeCurrentStep} of {safeTotalSteps}
-				</span>
-				<span className="text-sm font-medium text-gray-600">
-					{Math.round(progress)}% Complete
-				</span>
-			</div>
+		<div className="w-full">
+			{showLabels && (
+				<div className="flex justify-between mb-2">
+					<span className="text-sm font-medium text-indigo-600">
+						Section {safeCurrentStep} of {safeTotalSteps}
+					</span>
+					<span className="text-sm font-medium text-gray-600">
+						{Math.round(progress)}% Complete
+					</span>
+				</div>
+			)}
 			<div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
 				<div
 					className="h-full bg-indigo-600 transition-all duration-300 ease-in-out"
 					style={{ width: `${progress}%` }}
 				/>
 			</div>
-			{(firstLabel || lastLabel) && (
+			{showLabels && (firstLabel || lastLabel) && (
 				<div className="flex justify-between mt-2 gap-4">
 					<span
 						className={`text-xs truncate ${
