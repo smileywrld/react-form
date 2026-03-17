@@ -1,10 +1,10 @@
 import "./App.css";
 import { useCallback, useMemo, useRef, useState } from "react";
-import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BasicInformation from "./components/BasicInformation";
 import CaseTypeSelection from "./components/CaseTypeSelection";
+import Overview from "./components/Overview";
 
 import CaseSpecificConcerns from "./components/CaseSections/CaseSpecificConcerns";
 import DevelopmentalFamilyHistory from "./components/CaseSections/DevelopmentalFamilyHistory";
@@ -187,22 +187,28 @@ function App() {
 	}, [currentStepId, formData, handleFormDataChange]);
 
 	return (
-		<div className="bg-gray-200 h-fit p-20">
-			<Navbar />
-			<Header
-				steps={steps}
-				currentStepIndex={safeCurrentStepIndex}
-				onStepChange={handleStepChange}
-			>
-				{content}
-			</Header>
-			<Footer
-				onPrevious={handlePrevious}
-				onNext={handleNext}
-				previousDisabled={!canGoPrevious}
-				nextDisabled={nextDisabled}
-				nextLabel={safeCurrentStepIndex === steps.length - 1 ? "Submit" : "Next"}
-			/>
+		<div className="min-h-screen bg-gray-200 p-6">
+			<div className="max-w-6xl mx-auto space-y-6">
+				<Overview formData={formData} />
+
+				<div className="bg-white rounded-xl shadow-md p-6">
+					<Header
+						steps={steps}
+						currentStepIndex={safeCurrentStepIndex}
+						onStepChange={handleStepChange}
+					/>
+
+					<div className="mt-6">{content}</div>
+
+					<Footer
+						onPrevious={handlePrevious}
+						onNext={handleNext}
+						previousDisabled={!canGoPrevious}
+						nextDisabled={nextDisabled}
+						nextLabel={safeCurrentStepIndex === steps.length - 1 ? "Submit" : "Next"}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
 
-const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
+const Header = ({ steps, currentStepIndex, onStepChange }) => {
 	const totalSteps = steps.length;
 	const currentStepNumber = currentStepIndex + 1;
 	const sectionLabel = `Section ${currentStepNumber} of ${totalSteps}`;
@@ -11,19 +11,22 @@ const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 		: "0% Complete";
 
 	return (
-		<div className="bg-white rounded-xl shadow-md p-6">
-			<ProgressBar
-				currentStep={currentStepNumber}
-				totalSteps={totalSteps}
-				stepLabels={steps.map((s) => s.label)}
-			/>
-			<p className="text-gray-500">{sectionLabel}</p>
+		<div>
 			<div className="flex items-center justify-between">
-				<h2 className="text-lg font-semibold text-gray-800">{stepTitle}</h2>
-				<p className="text-gray-500">{percentComplete}</p>
+				<div>
+					<p className="text-sm text-gray-500">{sectionLabel}</p>
+					<h2 className="text-base font-semibold text-gray-900 mt-1">
+						{stepTitle}
+					</h2>
+				</div>
+				<p className="text-sm text-gray-500">{percentComplete}</p>
 			</div>
 
-			<div className="flex gap-3 mt-4 overflow-x-auto whitespace-nowrap pb-2">
+			<div className="mt-4">
+				<ProgressBar currentStep={currentStepNumber} totalSteps={totalSteps} showLabels={false} />
+			</div>
+
+			<div className="flex gap-2 mt-4 overflow-x-auto whitespace-nowrap pb-2">
 				{steps.map((step, index) => {
 					const isActive = index === currentStepIndex;
 					const isClickable = index <= currentStepIndex;
@@ -37,10 +40,10 @@ const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 								if (typeof onStepChange === "function") onStepChange(index);
 							}}
 							disabled={!isClickable}
-							className={`btn border p-1 rounded-md ${
+							className={`px-3 py-1.5 rounded-md text-sm border ${
 								isActive
-									? "bg-[#E0E7FF] border-[#A3B3FF] text-[#432DD7]"
-									: "bg-[#F3F4F6] text-[#4A5565]"
+									? "bg-indigo-100 border-indigo-200 text-indigo-700"
+									: "bg-gray-100 border-gray-200 text-gray-600"
 							} ${isClickable ? "" : "opacity-60 cursor-not-allowed"}`}
 						>
 							{step.label}
@@ -48,8 +51,6 @@ const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 					);
 				})}
 			</div>
-
-			{children}
 		</div>
 	);
 };
