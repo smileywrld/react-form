@@ -65,7 +65,7 @@ const communicationOptions = [
 const RadioTable = ({ title, leftHeader, rows, valueMap, onChange }) => (
 	<div>
 		<p className="text-sm font-medium text-gray-700 mb-3">{title}</p>
-		<div className="overflow-hidden rounded-lg border border-gray-200">
+		<div className="overflow-hidden border-gray-200">
 			<table className="min-w-full text-sm">
 				<thead className="bg-gray-50">
 					<tr>

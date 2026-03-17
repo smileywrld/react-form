@@ -105,7 +105,10 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					</label>
 					<div className="space-y-3 flex flex-col">
 						{diagnosisOptions.map((opt) => (
-							<label key={opt} className="inline-flex items-center gap-2">
+							<label
+								key={opt}
+								className="inline-flex items-center gap-2"
+							>
 								<input
 									type="checkbox"
 									checked={provisionalDiagnosis.includes(opt)}
@@ -130,7 +133,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					<p className="text-sm font-medium text-gray-700 mb-3">
 						Treatment Frequency Recommendations
 					</p>
-					<div className="overflow-hidden rounded-lg border border-gray-200">
+					<div className="overflow-hidden border-gray-200">
 						<table className="min-w-full text-sm">
 							<thead className="bg-gray-50">
 								<tr>
@@ -149,24 +152,32 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 										<td className="px-4 py-3">
 											<div className="flex flex-wrap gap-4">
 												{frequencyOptions.map((f) => (
-													<label key={f} className="inline-flex items-center gap-2">
+													<label
+														key={f}
+														className="inline-flex items-center gap-2"
+													>
 														<input
 															type="radio"
 															name={`treatmentFrequency-${row}`}
 															value={f}
-															checked={treatmentFrequency?.[row] === f}
+															checked={
+																treatmentFrequency?.[row] === f
+															}
 															onChange={(e) =>
 																onFormDataChange?.((prev) => ({
 																	...prev,
 																	treatmentFrequency: {
-																		...(prev.treatmentFrequency ?? {}),
+																		...(prev.treatmentFrequency ??
+																			{}),
 																		[row]: e.target.value,
 																	},
 																}))
 															}
 															className="h-4 w-4 accent-gray-800"
 														/>
-														<span className="text-sm text-gray-700">{f}</span>
+														<span className="text-sm text-gray-700">
+															{f}
+														</span>
 													</label>
 												))}
 											</div>
@@ -184,7 +195,10 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					</p>
 					<div className="space-y-3 flex flex-col">
 						{parentRecommendationOptions.map((opt) => (
-							<label key={opt} className="inline-flex items-center gap-2">
+							<label
+								key={opt}
+								className="inline-flex items-center gap-2"
+							>
 								<input
 									type="checkbox"
 									checked={parentRecommendations.includes(opt)}
@@ -209,9 +223,12 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					<p className="text-sm font-medium text-gray-700 mb-3">
 						Assessment Recommendations
 					</p>
-					<div className="space-y-3">
+					<div className="space-y-3 flex flex-col">
 						{assessmentRecommendationOptions.map((opt) => (
-							<label key={opt} className="inline-flex items-center gap-2">
+							<label
+								key={opt}
+								className="inline-flex items-center gap-2"
+							>
 								<input
 									type="checkbox"
 									checked={assessmentRecommendations.includes(opt)}
@@ -236,9 +253,12 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					<p className="text-sm font-medium text-gray-700 mb-3">
 						Follow-up Timeline
 					</p>
-					<div className="space-y-3">
+					<div className="space-y-3 flex flex-col">
 						{followupTimelineOptions.map((opt) => (
-							<label key={opt} className="inline-flex items-center gap-2">
+							<label
+								key={opt}
+								className="inline-flex items-center gap-2"
+							>
 								<input
 									type="checkbox"
 									checked={followupTimeline.includes(opt)}
@@ -260,17 +280,25 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 				</div>
 
 				<div>
-					<p className="text-sm font-medium text-gray-700 mb-3">Referrals</p>
-					<div className="space-y-3">
+					<p className="text-sm font-medium text-gray-700 mb-3">
+						Referrals
+					</p>
+					<div className="space-y-3 flex flex-col">
 						{referralOptions.map((opt) => (
-							<label key={opt} className="inline-flex items-center gap-2">
+							<label
+								key={opt}
+								className="inline-flex items-center gap-2"
+							>
 								<input
 									type="checkbox"
 									checked={referrals.includes(opt)}
 									onChange={() =>
 										onFormDataChange?.((prev) => ({
 											...prev,
-											referrals: toggleFromArray(prev.referrals ?? [], opt),
+											referrals: toggleFromArray(
+												prev.referrals ?? [],
+												opt,
+											),
 										}))
 									}
 									className="h-4 w-4 accent-gray-800"
