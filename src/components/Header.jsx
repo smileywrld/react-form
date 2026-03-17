@@ -1,18 +1,13 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 	const totalSteps = steps.length;
 	const currentStepNumber = currentStepIndex + 1;
-
-	const sectionLabel = useMemo(
-		() => `Section ${currentStepNumber} of ${totalSteps}`,
-		[currentStepNumber, totalSteps],
-	);
+	const sectionLabel = `Section ${currentStepNumber} of ${totalSteps}`;
 	const stepTitle = steps[currentStepIndex]?.label ?? "";
-	const percentComplete = useMemo(() => {
-		if (!totalSteps) return "0% Complete";
-		return `${Math.round((currentStepNumber / totalSteps) * 100)}% Complete`;
-	}, [currentStepNumber, totalSteps]);
+	const percentComplete = totalSteps
+		? `${Math.round((currentStepNumber / totalSteps) * 100)}% Complete`
+		: "0% Complete";
 
 	return (
 		<div className="bg-white rounded-xl shadow-md p-6">

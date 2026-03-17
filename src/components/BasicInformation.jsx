@@ -1,4 +1,4 @@
-import React from "react";
+import { forwardRef, useImperativeHandle, useMemo } from "react";
 import { useFormik } from "formik";
 
 // Import sections
@@ -26,8 +26,8 @@ const defaultFormData = {
 	assignedPsychologistOther: "",
 };
 
-const BasicInformation = React.forwardRef(({ formData, onFormDataChange }, ref) => {
-	const initialValues = React.useMemo(
+const BasicInformation = forwardRef(({ formData, onFormDataChange }, ref) => {
+	const initialValues = useMemo(
 		() => ({ ...defaultFormData, ...(formData ?? {}) }),
 		[formData],
 	);
@@ -40,7 +40,7 @@ const BasicInformation = React.forwardRef(({ formData, onFormDataChange }, ref) 
 		},
 	});
 
-	React.useImperativeHandle(ref, () => ({
+	useImperativeHandle(ref, () => ({
 		submit: () => formik.submitForm(),
 	}));
 

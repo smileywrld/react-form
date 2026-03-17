@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -16,30 +16,92 @@ import MentalStatusExamination from "./components/CaseSections/MentalStatusExami
 import InterventionPlan from "./components/CaseSections/InterventionPlan";
 import ReviewSubmit from "./components/CaseSections/ReviewSubmit";
 
-function App() {
-	const defaultFormData = useMemo(
-		() => ({
-			caseID: "",
-			picName: "",
-			picAge: "",
-			fullName: "",
-			age: "",
-			sex: "",
-			ethnicity: "",
-			birthday: "",
-			consultationDate: "",
-			emergContact: "",
-			emergContact2: "",
-			referralSource: "",
-			referralSourceOther: "",
-			assignedPsychologist: "",
-			assignedPsychologistOther: "",
-			caseType: "",
-		}),
-		[],
-	);
+const DEFAULT_FORM_DATA = {
+	caseID: "",
+	picName: "",
+	picAge: "",
+	fullName: "",
+	age: "",
+	sex: "",
+	ethnicity: "",
+	birthday: "",
+	consultationDate: "",
+	emergContact: "",
+	emergContact2: "",
+	referralSource: "",
+	referralSourceOther: "",
+	assignedPsychologist: "",
+	assignedPsychologistOther: "",
+	caseType: "",
+};
 
-	const [formData, setFormData] = useState(defaultFormData);
+const SECTIONS_BY_CASE_TYPE = {
+	"child-assessment": [
+		"case-specific-concerns",
+		"developmental-family-history",
+		"medical-academic",
+		"school-readiness",
+		"assessment-treatment-plan",
+		"occupational-marital-history",
+		"mental-status-examination",
+		"intervention-plan",
+		"review-submit",
+	],
+	"adult-assessment": [
+		"case-specific-concerns",
+		"developmental-family-history",
+		"medical-academic",
+		"occupational-marital-history",
+		"mental-status-examination",
+		"assessment-treatment-plan",
+		"review-submit",
+	],
+	"child-intervention": [
+		"case-specific-concerns",
+		"developmental-family-history",
+		"medical-academic",
+		"school-readiness",
+		"mental-status-examination",
+		"intervention-plan",
+		"review-submit",
+	],
+	"adult-intervention": [
+		"case-specific-concerns",
+		"developmental-family-history",
+		"medical-academic",
+		"occupational-marital-history",
+		"mental-status-examination",
+		"intervention-plan",
+		"review-submit",
+	],
+};
+
+const STEP_COMPONENTS = {
+	"case-specific-concerns": CaseSpecificConcerns,
+	"developmental-family-history": DevelopmentalFamilyHistory,
+	"medical-academic": MedicalAcademic,
+	"school-readiness": SchoolReadiness,
+	"assessment-treatment-plan": AssessmentTreatmentPlan,
+	"occupational-marital-history": OccupationalMaritalHistory,
+	"mental-status-examination": MentalStatusExamination,
+	"intervention-plan": InterventionPlan,
+	"review-submit": ReviewSubmit,
+};
+
+const STEP_LABELS = {
+	"case-specific-concerns": "Case-Specific Concerns",
+	"developmental-family-history": "Developmental & Family History",
+	"medical-academic": "Medical & Academic",
+	"school-readiness": "School Readiness",
+	"assessment-treatment-plan": "Assessment & Treatment Plan",
+	"occupational-marital-history": "Occupational & Marital History",
+	"mental-status-examination": "Mental Status Examination",
+	"intervention-plan": "Intervention Plan",
+	"review-submit": "Review & Submit",
+};
+
+function App() {
+	const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
 	const [currentStepIndex, setCurrentStepIndex] = useState(0);
 	const basicInformationRef = useRef(null);
 
@@ -51,100 +113,26 @@ function App() {
 		});
 	}, []);
 
-	const sectionsByCaseType = useMemo(
-		() => ({
-			"child-assessment": [
-				"case-specific-concerns",
-				"developmental-family-history",
-				"medical-academic",
-				"school-readiness",
-				"assessment-treatment-plan",
-				"occupational-marital-history",
-				"mental-status-examination",
-				"intervention-plan",
-				"review-submit",
-			],
-			"adult-assessment": [
-				"case-specific-concerns",
-				"developmental-family-history",
-				"medical-academic",
-				"occupational-marital-history",
-				"mental-status-examination",
-				"assessment-treatment-plan",
-				"review-submit",
-			],
-			"child-intervention": [
-				"case-specific-concerns",
-				"developmental-family-history",
-				"medical-academic",
-				"school-readiness",
-				"mental-status-examination",
-				"intervention-plan",
-				"review-submit",
-			],
-			"adult-intervention": [
-				"case-specific-concerns",
-				"developmental-family-history",
-				"medical-academic",
-				"occupational-marital-history",
-				"mental-status-examination",
-				"intervention-plan",
-				"review-submit",
-			],
-		}),
-		[],
-	);
-
-	const stepComponents = useMemo(
-		() => ({
-			"case-specific-concerns": CaseSpecificConcerns,
-			"developmental-family-history": DevelopmentalFamilyHistory,
-			"medical-academic": MedicalAcademic,
-			"school-readiness": SchoolReadiness,
-			"assessment-treatment-plan": AssessmentTreatmentPlan,
-			"occupational-marital-history": OccupationalMaritalHistory,
-			"mental-status-examination": MentalStatusExamination,
-			"intervention-plan": InterventionPlan,
-			"review-submit": ReviewSubmit,
-		}),
-		[],
-	);
-
-	const labelMap = useMemo(
-		() => ({
-			"case-specific-concerns": "Case-Specific Concerns",
-			"developmental-family-history": "Developmental & Family History",
-			"medical-academic": "Medical & Academic",
-			"school-readiness": "School Readiness",
-			"assessment-treatment-plan": "Assessment & Treatment Plan",
-			"occupational-marital-history": "Occupational & Marital History",
-			"mental-status-examination": "Mental Status Examination",
-			"intervention-plan": "Intervention Plan",
-			"review-submit": "Review & Submit",
-		}),
-		[],
-	);
-
 	const steps = useMemo(() => {
 		const baseSteps = [
 			{ id: "basic-information", label: "Basic Information" },
 			{ id: "case-type-selection", label: "Case Type Selection" },
 		];
 
-		const dynamicSectionIds = sectionsByCaseType[formData.caseType] ?? [];
+		const dynamicSectionIds = SECTIONS_BY_CASE_TYPE[formData.caseType] ?? [];
 		const dynamicSteps = dynamicSectionIds
 			.map((id) => {
-				if (!stepComponents[id]) return null;
-				return { id, label: labelMap[id] ?? id };
+				if (!STEP_COMPONENTS[id]) return null;
+				return { id, label: STEP_LABELS[id] ?? id };
 			})
 			.filter(Boolean);
 
 		return [...baseSteps, ...dynamicSteps];
-	}, [formData.caseType, labelMap, sectionsByCaseType, stepComponents]);
+	}, [formData.caseType]);
 
-	const safeCurrentStepIndex = useMemo(
-		() => Math.min(currentStepIndex, Math.max(0, steps.length - 1)),
-		[currentStepIndex, steps.length],
+	const safeCurrentStepIndex = Math.min(
+		currentStepIndex,
+		Math.max(0, steps.length - 1),
 	);
 
 	const canGoPrevious = safeCurrentStepIndex > 0;
@@ -193,10 +181,10 @@ function App() {
 			);
 		}
 
-		const DynamicComponent = stepComponents[currentStepId];
+		const DynamicComponent = STEP_COMPONENTS[currentStepId];
 		if (!DynamicComponent) return null;
 		return <DynamicComponent />;
-	}, [currentStepId, formData, handleFormDataChange, stepComponents]);
+	}, [currentStepId, formData, handleFormDataChange]);
 
 	return (
 		<div className="bg-gray-200 h-fit p-20">
