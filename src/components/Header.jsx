@@ -1,4 +1,5 @@
 import React from "react";
+import ProgressBar from "./ProgressBar";
 
 const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 	const totalSteps = steps.length;
@@ -11,6 +12,11 @@ const Header = ({ steps, currentStepIndex, onStepChange, children }) => {
 
 	return (
 		<div className="bg-white rounded-xl shadow-md p-6">
+			<ProgressBar
+				currentStep={currentStepNumber}
+				totalSteps={totalSteps}
+				stepLabels={steps.map((s) => s.label)}
+			/>
 			<p className="text-gray-500">{sectionLabel}</p>
 			<div className="flex items-center justify-between">
 				<h2 className="text-lg font-semibold text-gray-800">{stepTitle}</h2>
