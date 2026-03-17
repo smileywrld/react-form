@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
+import { FiCheck } from "react-icons/fi";
 
 const Header = ({ steps, currentStepIndex, onStepChange }) => {
 	const totalSteps = steps.length;
@@ -29,6 +30,7 @@ const Header = ({ steps, currentStepIndex, onStepChange }) => {
 			<div className="flex gap-2 mt-4 overflow-x-auto whitespace-nowrap pb-2">
 				{steps.map((step, index) => {
 					const isActive = index === currentStepIndex;
+					const isCompleted = index < currentStepIndex;
 					const isClickable = index <= currentStepIndex;
 
 					return (
@@ -40,12 +42,15 @@ const Header = ({ steps, currentStepIndex, onStepChange }) => {
 								if (typeof onStepChange === "function") onStepChange(index);
 							}}
 							disabled={!isClickable}
-							className={`px-3 py-1.5 rounded-md text-sm border ${
-								isActive
-									? "bg-indigo-100 border-indigo-200 text-indigo-700"
-									: "bg-gray-100 border-gray-200 text-gray-600"
+							className={`px-3 py-1.5 rounded-md text-sm border inline-flex items-center gap-2 ${
+								isCompleted
+									? "bg-green-100 border-green-200 text-green-700"
+									: isActive
+										? "bg-indigo-50 border-indigo-200 text-indigo-700"
+										: "bg-gray-100 border-gray-200 text-gray-600"
 							} ${isClickable ? "" : "opacity-60 cursor-not-allowed"}`}
 						>
+							{isCompleted && <FiCheck className="shrink-0" />}
 							{step.label}
 						</button>
 					);

@@ -5,7 +5,13 @@ const Footer = ({
 	previousDisabled = false,
 	nextDisabled = false,
 	nextLabel = "Next",
+	nextVariant = "primary",
 }) => {
+	const nextButtonClassName =
+		nextVariant === "success"
+			? "bg-green-600 hover:bg-green-700 focus:ring-green-500"
+			: "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500";
+
 	return (
 		<div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
 			<button
@@ -31,7 +37,7 @@ const Footer = ({
 				type="button"
 				onClick={onNext}
 				disabled={nextDisabled}
-				className={`rounded-md bg-indigo-600 px-8 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
+				className={`rounded-md px-8 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${nextButtonClassName} ${
 					nextDisabled ? "opacity-60 cursor-not-allowed" : ""
 				}`}
 			>

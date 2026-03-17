@@ -183,7 +183,9 @@ function App() {
 
 		const DynamicComponent = STEP_COMPONENTS[currentStepId];
 		if (!DynamicComponent) return null;
-		return <DynamicComponent />;
+		return (
+			<DynamicComponent formData={formData} onFormDataChange={handleFormDataChange} />
+		);
 	}, [currentStepId, formData, handleFormDataChange]);
 
 	return (
@@ -205,7 +207,12 @@ function App() {
 						onNext={handleNext}
 						previousDisabled={!canGoPrevious}
 						nextDisabled={nextDisabled}
-						nextLabel={safeCurrentStepIndex === steps.length - 1 ? "Submit" : "Next"}
+						nextLabel={
+							safeCurrentStepIndex === steps.length - 1 ? "Submit Form" : "Next"
+						}
+						nextVariant={
+							safeCurrentStepIndex === steps.length - 1 ? "success" : "primary"
+						}
 					/>
 				</div>
 			</div>
