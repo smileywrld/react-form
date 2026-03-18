@@ -2,6 +2,12 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Deploy to GitHub Pages
+
+- Ensure `Settings → Pages → Build and deployment → Source` is set to `GitHub Actions`.
+- The site URL should be `https://smileywrld.github.io/react-form/`.
+- After pushing to `main` or `master`, check `Actions → Deploy to GitHub Pages` for build/deploy logs.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
