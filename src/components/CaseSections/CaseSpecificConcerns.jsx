@@ -1,13 +1,15 @@
-const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
-	const isAdult = formData?.caseType === "adult-assessment" || formData?.caseType === "adult-intervention";
-	const primaryConcerns = isAdult
-		? formData?.clientConcerns ?? ""
-		: formData?.parentsConcerns ?? "";
-	const presentingProblems = formData?.presentingProblems ?? "";
-	const backgroundOfProblems = formData?.backgroundOfProblems ?? "";
-	const actionsTakenPreviously = formData?.actionsTakenPreviously ?? "";
-	const familyBackground = formData?.familyBackground ?? "";
-	const siblingsAcademicPerformance = formData?.siblingsAcademicPerformance ?? "";
+import { useFormikContext } from "formik";
+
+const CaseSpecificConcerns = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const isAdult =
+		values.caseType === "adult-assessment" || values.caseType === "adult-intervention";
+	const primaryConcerns = isAdult ? values.clientConcerns : values.parentsConcerns;
+	const presentingProblems = values.presentingProblems;
+	const backgroundOfProblems = values.backgroundOfProblems;
+	const actionsTakenPreviously = values.actionsTakenPreviously;
+	const familyBackground = values.familyBackground;
+	const siblingsAcademicPerformance = values.siblingsAcademicPerformance;
 
 	return (
 		<div>
@@ -28,10 +30,9 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={primaryConcerns}
 						onChange={(e) =>
-							onFormDataChange?.(
-								isAdult
-									? { clientConcerns: e.target.value }
-									: { parentsConcerns: e.target.value },
+							setFieldValue(
+								isAdult ? "clientConcerns" : "parentsConcerns",
+								e.target.value,
 							)
 						}
 						rows={4}
@@ -55,7 +56,7 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={presentingProblems}
 						onChange={(e) =>
-							onFormDataChange?.({ presentingProblems: e.target.value })
+							setFieldValue("presentingProblems", e.target.value)
 						}
 						rows={5}
 						maxLength={2000}
@@ -74,7 +75,7 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={backgroundOfProblems}
 						onChange={(e) =>
-							onFormDataChange?.({ backgroundOfProblems: e.target.value })
+							setFieldValue("backgroundOfProblems", e.target.value)
 						}
 						rows={5}
 						maxLength={2000}
@@ -93,7 +94,7 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={actionsTakenPreviously}
 						onChange={(e) =>
-							onFormDataChange?.({ actionsTakenPreviously: e.target.value })
+							setFieldValue("actionsTakenPreviously", e.target.value)
 						}
 						rows={4}
 						placeholder="What has been done to address these concerns..."
@@ -108,7 +109,7 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={familyBackground}
 						onChange={(e) =>
-							onFormDataChange?.({ familyBackground: e.target.value })
+							setFieldValue("familyBackground", e.target.value)
 						}
 						rows={4}
 						placeholder="Family structure, dynamics, relevant background..."
@@ -124,9 +125,7 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 						<input
 							value={siblingsAcademicPerformance}
 							onChange={(e) =>
-								onFormDataChange?.({
-									siblingsAcademicPerformance: e.target.value,
-								})
+								setFieldValue("siblingsAcademicPerformance", e.target.value)
 							}
 							placeholder="Describe siblings' performance if applicable"
 							className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"

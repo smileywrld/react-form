@@ -1,8 +1,8 @@
-const CaseTypeSelection = ({
-	formData,
-	onFormDataChange,
-}) => {
-	const selectedCase = formData.caseType || "";
+import { useFormikContext } from "formik";
+
+const CaseTypeSelection = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const selectedCase = values.caseType || "";
 
 	const caseTypes = [
 		{
@@ -34,9 +34,7 @@ const CaseTypeSelection = ({
 	];
 
 	const handleCaseSelect = (caseValue) => {
-		if (typeof onFormDataChange === "function") {
-			onFormDataChange({ caseType: caseValue });
-		}
+		setFieldValue("caseType", caseValue);
 	};
 
 	return (
