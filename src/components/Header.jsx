@@ -16,7 +16,7 @@ const Header = ({ steps, currentStepIndex, onStepChange }) => {
 			<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 				<div>
 					<p className="text-sm text-gray-500">{sectionLabel}</p>
-					<h2 className="text-base font-semibold text-gray-900 mt-1">
+					<h2 className="text-base text-gray-900 mt-1">
 						{stepTitle}
 					</h2>
 				</div>
