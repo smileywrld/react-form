@@ -6,97 +6,9 @@ import BasicInformation from "./components/BasicInformation";
 import CaseTypeSelection from "./components/CaseTypeSelection";
 import Overview from "./components/Overview";
 
-import CaseSpecificConcerns from "./components/CaseSections/CaseSpecificConcerns";
-import DevelopmentalFamilyHistory from "./components/CaseSections/DevelopmentalFamilyHistory";
-import MedicalAcademic from "./components/CaseSections/MedicalAcademic";
-import SchoolReadiness from "./components/CaseSections/SchoolReadiness";
-import AssessmentTreatmentPlan from "./components/CaseSections/AssessmentTreatmentPlan";
-import OccupationalMaritalHistory from "./components/CaseSections/OccupationalMaritalHistory";
-import MentalStatusExamination from "./components/CaseSections/MentalStatusExamination";
-import InterventionPlan from "./components/CaseSections/InterventionPlan";
-import ReviewSubmit from "./components/CaseSections/ReviewSubmit";
-
-const DEFAULT_FORM_DATA = {
-	caseID: "",
-	picName: "",
-	picAge: "",
-	fullName: "",
-	age: "",
-	sex: "",
-	ethnicity: "",
-	birthday: "",
-	consultationDate: "",
-	emergContact: "",
-	emergContact2: "",
-	referralSource: "",
-	referralSourceOther: "",
-	assignedPsychologist: "",
-	assignedPsychologistOther: "",
-	caseType: "",
-};
-
-const SECTIONS_BY_CASE_TYPE = {
-	"child-assessment": [
-		"case-specific-concerns",
-		"developmental-family-history",
-		"medical-academic",
-		"school-readiness",
-		"mental-status-examination",
-		"assessment-treatment-plan",
-		"review-submit",
-	],
-	"adult-assessment": [
-		"case-specific-concerns",
-		"developmental-family-history",
-		"medical-academic",
-		"occupational-marital-history",
-		"mental-status-examination",
-		"assessment-treatment-plan",
-		"review-submit",
-	],
-	"child-intervention": [
-		"case-specific-concerns",
-		"developmental-family-history",
-		"medical-academic",
-		"school-readiness",
-		"mental-status-examination",
-		"intervention-plan",
-		"review-submit",
-	],
-	"adult-intervention": [
-		"case-specific-concerns",
-		"developmental-family-history",
-		"medical-academic",
-		"occupational-marital-history",
-		"mental-status-examination",
-		"intervention-plan",
-		"review-submit",
-	],
-};
-
-const STEP_COMPONENTS = {
-	"case-specific-concerns": CaseSpecificConcerns,
-	"developmental-family-history": DevelopmentalFamilyHistory,
-	"medical-academic": MedicalAcademic,
-	"school-readiness": SchoolReadiness,
-	"assessment-treatment-plan": AssessmentTreatmentPlan,
-	"occupational-marital-history": OccupationalMaritalHistory,
-	"mental-status-examination": MentalStatusExamination,
-	"intervention-plan": InterventionPlan,
-	"review-submit": ReviewSubmit,
-};
-
-const STEP_LABELS = {
-	"case-specific-concerns": "Case-Specific Concerns",
-	"developmental-family-history": "Developmental & Family History",
-	"medical-academic": "Medical & Academic",
-	"school-readiness": "School Readiness",
-	"assessment-treatment-plan": "Assessment & Treatment Plan",
-	"occupational-marital-history": "Occupational & Marital History",
-	"mental-status-examination": "Mental Status Examination",
-	"intervention-plan": "Intervention Plan",
-	"review-submit": "Review & Submit",
-};
+import { DEFAULT_FORM_DATA } from "./wizard/initialFormData";
+import { STEP_COMPONENTS } from "./wizard/stepRegistry";
+import { getSteps } from "./wizard/steps";
 
 function App() {
 	const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
@@ -112,20 +24,7 @@ function App() {
 	}, []);
 
 	const steps = useMemo(() => {
-		const baseSteps = [
-			{ id: "basic-information", label: "Basic Information" },
-			{ id: "case-type-selection", label: "Case Type Selection" },
-		];
-
-		const dynamicSectionIds = SECTIONS_BY_CASE_TYPE[formData.caseType] ?? [];
-		const dynamicSteps = dynamicSectionIds
-			.map((id) => {
-				if (!STEP_COMPONENTS[id]) return null;
-				return { id, label: STEP_LABELS[id] ?? id };
-			})
-			.filter(Boolean);
-
-		return [...baseSteps, ...dynamicSteps];
+		return getSteps(formData.caseType);
 	}, [formData.caseType]);
 
 	const safeCurrentStepIndex = Math.min(
