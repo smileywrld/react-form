@@ -79,6 +79,13 @@ const toggleFromArray = (arr, value) =>
 	arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value];
 
 const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
+	const isAdultAssessment = formData?.caseType === "adult-assessment";
+
+	const adultClinicalImpression = formData?.adultClinicalImpression ?? "";
+	const adultComorbidityPresent = formData?.adultComorbidityPresent ?? "";
+	const adultAssessmentRecommendation = formData?.adultAssessmentRecommendation ?? "";
+	const adultAssessmentJustification = formData?.adultAssessmentJustification ?? "";
+
 	const provisionalDiagnosis = formData?.provisionalDiagnosis ?? [];
 	const treatmentFrequency = formData?.treatmentFrequency ?? {};
 	const parentRecommendations = formData?.parentRecommendations ?? [];
@@ -90,14 +97,126 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 		<div>
 			<div className="my-5">
 				<h2 className="text-lg font-semibold text-gray-800">
-					Assessment &amp; Treatment Plan
+					{isAdultAssessment ? "Assessment Plan" : "Assessment & Treatment Plan"}
 				</h2>
 				<p className="text-gray-500 text-sm">
-					Child &amp; Adolescent Assessment Plan (Questions 88-93)
+					{isAdultAssessment
+						? "Adult Assessment Plan (Questions 94-98)"
+						: "Child & Adolescent Assessment Plan (Questions 88-93)"}
 				</p>
 				<hr className="border-[#F3F4F6] mt-3" />
 			</div>
 
+			{isAdultAssessment ? (
+				<div className="space-y-8">
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							Clinical Impression <span className="text-red-500">*</span>
+						</label>
+						<div className="space-y-3">
+							{[
+								"Adult ASD",
+								"Adult ADHD",
+								"SLD (Specific Learning Disorder)",
+								"IDD (Intellectual Developmental Disorder)",
+								"Other",
+							].map((opt) => (
+								<label key={opt} className="inline-flex items-center gap-2">
+									<input
+										type="radio"
+										name="adultClinicalImpression"
+										value={opt}
+										checked={adultClinicalImpression === opt}
+										onChange={(e) =>
+											onFormDataChange?.({
+												adultClinicalImpression: e.target.value,
+											})
+										}
+										className="h-4 w-4 accent-gray-800"
+									/>
+									<span className="text-sm text-gray-700">{opt}</span>
+								</label>
+							))}
+						</div>
+					</div>
+
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							Comorbidity Present
+						</label>
+						<div className="flex flex-wrap gap-6">
+							{[
+								{ value: "yes", label: "Yes" },
+								{ value: "no", label: "No" },
+								{ value: "suspected", label: "Suspected" },
+							].map((opt) => (
+								<label key={opt.value} className="inline-flex items-center gap-2">
+									<input
+										type="radio"
+										name="adultComorbidityPresent"
+										value={opt.value}
+										checked={adultComorbidityPresent === opt.value}
+										onChange={(e) =>
+											onFormDataChange?.({
+												adultComorbidityPresent: e.target.value,
+											})
+										}
+										className="h-4 w-4 accent-gray-800"
+									/>
+									<span className="text-sm text-gray-700">{opt.label}</span>
+								</label>
+							))}
+						</div>
+					</div>
+
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							Assessment Recommendation <span className="text-red-500">*</span>
+						</label>
+						<div className="space-y-3">
+							{[
+								"Comprehensive psychological assessment",
+								"Neuropsychological assessment",
+								"ADHD-specific assessment",
+								"ASD-specific assessment",
+								"No further assessment needed",
+								"Other",
+							].map((opt) => (
+								<label key={opt} className="inline-flex items-center gap-2">
+									<input
+										type="radio"
+										name="adultAssessmentRecommendation"
+										value={opt}
+										checked={adultAssessmentRecommendation === opt}
+										onChange={(e) =>
+											onFormDataChange?.({
+												adultAssessmentRecommendation: e.target.value,
+											})
+										}
+										className="h-4 w-4 accent-gray-800"
+									/>
+									<span className="text-sm text-gray-700">{opt}</span>
+								</label>
+							))}
+						</div>
+					</div>
+
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-2">
+							Justification for Assessment
+						</label>
+						<textarea
+							value={adultAssessmentJustification}
+							onChange={(e) =>
+								onFormDataChange?.({ adultAssessmentJustification: e.target.value })
+							}
+							rows={5}
+							placeholder="Provide rationale for the recommended assessment..."
+							className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						/>
+					</div>
+				</div>
+			) : (
 			<div className="space-y-8">
 				<div>
 					<label className="block text-sm font-medium text-gray-700 mb-3">
@@ -309,6 +428,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 					</div>
 				</div>
 			</div>
+			)}
 		</div>
 	);
 };

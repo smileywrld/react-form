@@ -41,10 +41,8 @@ const SECTIONS_BY_CASE_TYPE = {
 		"developmental-family-history",
 		"medical-academic",
 		"school-readiness",
-		"assessment-treatment-plan",
-		"occupational-marital-history",
 		"mental-status-examination",
-		"intervention-plan",
+		"assessment-treatment-plan",
 		"review-submit",
 	],
 	"adult-assessment": [

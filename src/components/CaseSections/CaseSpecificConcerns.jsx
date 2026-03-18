@@ -1,5 +1,8 @@
 const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
-	const parentsConcerns = formData?.parentsConcerns ?? "";
+	const isAdult = formData?.caseType === "adult-assessment" || formData?.caseType === "adult-intervention";
+	const primaryConcerns = isAdult
+		? formData?.clientConcerns ?? ""
+		: formData?.parentsConcerns ?? "";
 	const presentingProblems = formData?.presentingProblems ?? "";
 	const backgroundOfProblems = formData?.backgroundOfProblems ?? "";
 	const actionsTakenPreviously = formData?.actionsTakenPreviously ?? "";
@@ -19,20 +22,29 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 			<div className="space-y-8">
 				<div>
 					<label className="block text-sm font-medium text-gray-700 mb-2">
-						Parent&apos;s Concerns <span className="text-red-500">*</span>
+						{isAdult ? "Client's Concerns" : "Parent's Concerns"}{" "}
+						<span className="text-red-500">*</span>
 					</label>
 					<textarea
-						value={parentsConcerns}
+						value={primaryConcerns}
 						onChange={(e) =>
-							onFormDataChange?.({ parentsConcerns: e.target.value })
+							onFormDataChange?.(
+								isAdult
+									? { clientConcerns: e.target.value }
+									: { parentsConcerns: e.target.value },
+							)
 						}
 						rows={4}
 						maxLength={1000}
-						placeholder="What are the parent's main concerns?"
+						placeholder={
+							isAdult
+								? "What are the client's main concerns?"
+								: "What are the parent's main concerns?"
+						}
 						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 					<p className="text-xs text-gray-400 text-right mt-1">
-						{parentsConcerns.length} / 1000
+						{primaryConcerns.length} / 1000
 					</p>
 				</div>
 
@@ -104,19 +116,23 @@ const CaseSpecificConcerns = ({ formData, onFormDataChange }) => {
 					/>
 				</div>
 
-				<div>
-					<label className="block text-sm font-medium text-gray-700 mb-2">
-						Siblings Academic Performance
-					</label>
-					<input
-						value={siblingsAcademicPerformance}
-						onChange={(e) =>
-							onFormDataChange?.({ siblingsAcademicPerformance: e.target.value })
-						}
-						placeholder="Describe siblings' performance if applicable"
-						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
-					/>
-				</div>
+				{!isAdult && (
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-2">
+							Siblings Academic Performance
+						</label>
+						<input
+							value={siblingsAcademicPerformance}
+							onChange={(e) =>
+								onFormDataChange?.({
+									siblingsAcademicPerformance: e.target.value,
+								})
+							}
+							placeholder="Describe siblings' performance if applicable"
+							className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	);
