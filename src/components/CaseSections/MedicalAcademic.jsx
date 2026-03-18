@@ -56,7 +56,7 @@ const MedicalAcademic = () => {
 									type="checkbox"
 									checked={selectedConditions.includes(c)}
 									onChange={() => toggleCondition(c)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{c}</span>
 							</label>
@@ -75,7 +75,7 @@ const MedicalAcademic = () => {
 						}
 						rows={4}
 						placeholder="List all medications, dosages, purposes..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -94,7 +94,7 @@ const MedicalAcademic = () => {
 									onChange={(e) =>
 										setFieldValue("hospitalizationHistory", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">
 									{opt === "yes" ? "Yes" : "No"}
@@ -123,7 +123,7 @@ const MedicalAcademic = () => {
 									onChange={(e) =>
 										setFieldValue("psychiatricConditions", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt.label}</span>
 							</label>
@@ -137,7 +137,7 @@ const MedicalAcademic = () => {
 						}
 						rows={4}
 						placeholder="Provide details..."
-						className="w-full mt-3 border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="mt-3 w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -156,7 +156,7 @@ const MedicalAcademic = () => {
 									onChange={(e) =>
 										setFieldValue("psychiatricHospitalization", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">
 									{opt === "yes" ? "Yes" : "No"}
@@ -177,7 +177,7 @@ const MedicalAcademic = () => {
 						}
 						rows={4}
 						placeholder="Previous therapy, counseling, or interventions..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -200,7 +200,7 @@ const MedicalAcademic = () => {
 									onChange={(e) =>
 										setFieldValue("currentlyStudent", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt.label}</span>
 							</label>
@@ -218,7 +218,7 @@ const MedicalAcademic = () => {
 							setFieldValue("hobbiesInterests", e.target.value)
 						}
 						placeholder="What does the client enjoy doing?"
-						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -231,7 +231,7 @@ const MedicalAcademic = () => {
 						onChange={(e) => setFieldValue("socialization", e.target.value)}
 						rows={4}
 						placeholder="Describe social interactions, friendships, group activities..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -245,7 +245,7 @@ const MedicalAcademic = () => {
 							setFieldValue("numberOfFriends", e.target.value)
 						}
 						placeholder="Approximate number"
-						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 			</div>

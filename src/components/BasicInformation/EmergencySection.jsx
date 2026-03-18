@@ -13,7 +13,7 @@ const EmergencySection = ({ formik }) => {
 					onChange={formik.handleChange}
 					value={formik.values.emergContact}
 					placeholder="Name, relationship, phone number, address"
-					className="resize-none mt-1 block w-full rounded-md border border-[#576172] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+					className="mt-1 block w-full resize-none rounded-md border border-[#DADEE3] p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 				/>
 			</div>
 
@@ -27,7 +27,7 @@ const EmergencySection = ({ formik }) => {
 					onChange={formik.handleChange}
 					value={formik.values.emergContact2}
 					placeholder="Name, relationship, phone number, address"
-					className="resize-none mt-1 block w-full rounded-md border border-[#576172] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+					className="mt-1 block w-full resize-none rounded-md border border-[#DADEE3] p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 				/>
 			</div>
 		</div>

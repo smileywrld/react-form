@@ -137,7 +137,7 @@ const AssessmentTreatmentPlan = () => {
 										onChange={(e) =>
 											setFieldValue("adultClinicalImpression", e.target.value)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt}</span>
 								</label>
@@ -164,7 +164,7 @@ const AssessmentTreatmentPlan = () => {
 										onChange={(e) =>
 											setFieldValue("adultComorbidityPresent", e.target.value)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt.label}</span>
 								</label>
@@ -197,7 +197,7 @@ const AssessmentTreatmentPlan = () => {
 												e.target.value,
 											)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt}</span>
 								</label>
@@ -216,7 +216,7 @@ const AssessmentTreatmentPlan = () => {
 							}
 							rows={5}
 							placeholder="Provide rationale for the recommended assessment..."
-							className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+							className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 						/>
 					</div>
 				</div>
@@ -236,7 +236,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={provisionalDiagnosis.includes(opt)}
 									onChange={() => toggleArrayField("provisionalDiagnosis", opt)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -284,7 +284,7 @@ const AssessmentTreatmentPlan = () => {
 																	[row]: e.target.value,
 																})
 															}
-															className="h-4 w-4 accent-gray-800"
+															className="custom-radio"
 														/>
 														<span className="text-sm text-gray-700">
 															{f}
@@ -314,7 +314,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={parentRecommendations.includes(opt)}
 									onChange={() => toggleArrayField("parentRecommendations", opt)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -338,7 +338,7 @@ const AssessmentTreatmentPlan = () => {
 									onChange={() =>
 										toggleArrayField("assessmentRecommendations", opt)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -360,7 +360,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={followupTimeline.includes(opt)}
 									onChange={() => toggleArrayField("followupTimeline", opt)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -382,7 +382,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={referrals.includes(opt)}
 									onChange={() => toggleArrayField("referrals", opt)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>

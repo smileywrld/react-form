@@ -27,7 +27,7 @@ const CasePicSection = ({ formik }) => {
 					value={formik.values.picName}
 					placeholder="Person in charge"
 					type="text"
-					className="border px-2 py-1 rounded-sm border-[#576172] focus:outline-none focus:border-indigo-500"
+					className="border border-[#DADEE3] px-2 py-1 rounded-sm focus:outline-none focus:border-indigo-500"
 				/>
 			</div>
 
@@ -41,7 +41,7 @@ const CasePicSection = ({ formik }) => {
 					value={formik.values.picAge}
 					placeholder="Age"
 					type="number"
-					className="border px-2 py-1 rounded-sm border-[#576172] focus:outline-none focus:border-indigo-500"
+					className="border border-[#DADEE3] px-2 py-1 rounded-sm focus:outline-none focus:border-indigo-500"
 				/>
 			</div>
 		</div>

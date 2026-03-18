@@ -100,7 +100,7 @@ const InterventionPlan = () => {
 											e.target.value,
 										)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -122,7 +122,7 @@ const InterventionPlan = () => {
 						}
 						rows={4}
 						placeholder="List alternative diagnoses to consider..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -137,7 +137,7 @@ const InterventionPlan = () => {
 						}
 						rows={4}
 						placeholder="Provide comprehensive case formulation including predisposing, precipitating, perpetuating, and protective factors..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -163,7 +163,7 @@ const InterventionPlan = () => {
 											e.target.value,
 										)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt.label}</span>
 							</label>
@@ -184,7 +184,7 @@ const InterventionPlan = () => {
 									onChange={() =>
 										toggleArrayField("interventionSessionPlan", opt)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -223,7 +223,7 @@ const InterventionPlan = () => {
 									onChange={() =>
 										toggleArrayField("interventionClientRecommendations", opt)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -242,7 +242,7 @@ const InterventionPlan = () => {
 						}
 						rows={4}
 						placeholder="Specify homework assignments, self-monitoring tasks, practice exercises..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -259,7 +259,7 @@ const InterventionPlan = () => {
 									onChange={() =>
 										toggleArrayField("interventionReferrals", opt)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -278,7 +278,7 @@ const InterventionPlan = () => {
 						}
 						rows={4}
 						placeholder="Specify frequency of sessions, duration of treatment, review points, termination criteria..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 			</div>

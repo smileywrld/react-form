@@ -42,7 +42,7 @@ const CaseSpecificConcerns = () => {
 								? "What are the client's main concerns?"
 								: "What are the parent's main concerns?"
 						}
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 					<p className="text-xs text-gray-400 text-right mt-1">
 						{primaryConcerns.length} / 1000
@@ -61,7 +61,7 @@ const CaseSpecificConcerns = () => {
 						rows={5}
 						maxLength={2000}
 						placeholder="Describe the presenting problems in detail..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 					<p className="text-xs text-gray-400 text-right mt-1">
 						{presentingProblems.length} / 2000
@@ -80,7 +80,7 @@ const CaseSpecificConcerns = () => {
 						rows={5}
 						maxLength={2000}
 						placeholder="When and how did the problems start..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 					<p className="text-xs text-gray-400 text-right mt-1">
 						{backgroundOfProblems.length} / 2000
@@ -98,7 +98,7 @@ const CaseSpecificConcerns = () => {
 						}
 						rows={4}
 						placeholder="What has been done to address these concerns..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -113,7 +113,7 @@ const CaseSpecificConcerns = () => {
 						}
 						rows={4}
 						placeholder="Family structure, dynamics, relevant background..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -128,7 +128,7 @@ const CaseSpecificConcerns = () => {
 								setFieldValue("siblingsAcademicPerformance", e.target.value)
 							}
 							placeholder="Describe siblings' performance if applicable"
-							className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+							className="w-full rounded-lg border border-[#DADEE3] px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 						/>
 					</div>
 				)}

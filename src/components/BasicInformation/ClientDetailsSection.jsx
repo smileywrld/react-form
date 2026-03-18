@@ -12,7 +12,7 @@ const ClientDetailsSection = ({ formik }) => {
 					name="fullName"
 					onChange={formik.handleChange}
 					value={formik.values.fullName}
-					className="w-full border px-2 py-1 rounded-sm border-[#576172] focus:outline-none focus:border-indigo-500"
+					className="w-full border border-[#DADEE3] px-2 py-1 rounded-sm focus:outline-none focus:border-indigo-500"
 					placeholder="Full name"
 				/>
 			</div>
@@ -28,7 +28,7 @@ const ClientDetailsSection = ({ formik }) => {
 						type="number"
 						onChange={formik.handleChange}
 						value={formik.values.age}
-						className="w-full px-3 py-2 border rounded-sm border-[#576172] focus:outline-none focus:border-indigo-500"
+						className="w-full border border-[#DADEE3] px-3 py-2 rounded-sm focus:outline-none focus:border-indigo-500"
 					/>
 				</div>
 

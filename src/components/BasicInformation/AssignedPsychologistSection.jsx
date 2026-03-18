@@ -15,7 +15,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 						value="ms-lee-li"
 						checked={formik.values.assignedPsychologist === "ms-lee-li"}
 						onChange={formik.handleChange}
-						className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+						className="custom-radio"
 					/>
 					<label
 						htmlFor="psychMsLee"
@@ -33,7 +33,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 						value="ms-hiew"
 						checked={formik.values.assignedPsychologist === "ms-hiew"}
 						onChange={formik.handleChange}
-						className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+						className="custom-radio"
 					/>
 					<label
 						htmlFor="psychMsHiew"
@@ -52,7 +52,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 							value="other"
 							checked={formik.values.assignedPsychologist === "other"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="psychOther"
@@ -70,7 +70,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 								value={formik.values.assignedPsychologistOther || ""}
 								onChange={formik.handleChange}
 								placeholder="Please specify..."
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+								className="block w-full rounded-md border border-[#DADEE3] p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 							/>
 						</div>
 					)}

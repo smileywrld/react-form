@@ -96,7 +96,7 @@ const RadioTable = ({ title, leftHeader, rows, valueMap, onChange }) => (
 												value={opt.value}
 												checked={valueMap?.[label] === opt.value}
 												onChange={(e) => onChange(label, e.target.value)}
-												className="h-4 w-4 accent-gray-800"
+												className="custom-radio"
 											/>
 											<span className="text-sm text-gray-700">{opt.label}</span>
 										</label>

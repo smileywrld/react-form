@@ -47,7 +47,7 @@ const MentalStatusExamination = () => {
 						onChange={(e) => setFieldValue("mseAppearance", e.target.value)}
 						rows={4}
 						placeholder="Describe client's general appearance, grooming, dress..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -64,7 +64,7 @@ const MentalStatusExamination = () => {
 									value={opt}
 									checked={attitude === opt}
 									onChange={(e) => setFieldValue("mseAttitude", e.target.value)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -81,7 +81,7 @@ const MentalStatusExamination = () => {
 						onChange={(e) => setFieldValue("mseBehavior", e.target.value)}
 						rows={4}
 						placeholder="Describe observable behaviors, activity level, eye contact..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -98,7 +98,7 @@ const MentalStatusExamination = () => {
 									value={opt}
 									checked={speech === opt}
 									onChange={(e) => setFieldValue("mseSpeech", e.target.value)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -114,7 +114,7 @@ const MentalStatusExamination = () => {
 						value={mood}
 						onChange={(e) => setFieldValue("mseMood", e.target.value)}
 						placeholder="e.g., Happy, Sad, Anxious, Irritable"
-						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -131,7 +131,7 @@ const MentalStatusExamination = () => {
 									value={opt}
 									checked={affect === opt}
 									onChange={(e) => setFieldValue("mseAffect", e.target.value)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -155,7 +155,7 @@ const MentalStatusExamination = () => {
 										onChange={(e) =>
 											setFieldValue("mseOrientationTime", e.target.value)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt}</span>
 								</label>
@@ -177,7 +177,7 @@ const MentalStatusExamination = () => {
 										onChange={(e) =>
 											setFieldValue("mseOrientationPlace", e.target.value)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt}</span>
 								</label>
@@ -199,7 +199,7 @@ const MentalStatusExamination = () => {
 										onChange={(e) =>
 											setFieldValue("mseOrientationPerson", e.target.value)
 										}
-										className="h-4 w-4 accent-gray-800"
+										className="custom-radio"
 									/>
 									<span className="text-sm text-gray-700">{opt}</span>
 								</label>
@@ -221,7 +221,7 @@ const MentalStatusExamination = () => {
 									value={opt}
 								checked={insight === opt}
 								onChange={(e) => setFieldValue("mseInsight", e.target.value)}
-								className="h-4 w-4 accent-gray-800"
+								className="custom-radio"
 							/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>

@@ -37,7 +37,7 @@ const OccupationalMaritalHistory = () => {
 						onChange={(e) => setFieldValue("workHistory", e.target.value)}
 						rows={4}
 						placeholder="Employment history, job changes, work-related issues..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -51,7 +51,7 @@ const OccupationalMaritalHistory = () => {
 							setFieldValue("currentOccupation", e.target.value)
 						}
 						placeholder="Current job title or employment status"
-						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -70,7 +70,7 @@ const OccupationalMaritalHistory = () => {
 									onChange={(e) =>
 										setFieldValue("relationshipStatus", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -89,7 +89,7 @@ const OccupationalMaritalHistory = () => {
 						}
 						rows={4}
 						placeholder="Significant past relationships, patterns..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 			</div>

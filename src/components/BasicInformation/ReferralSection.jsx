@@ -17,7 +17,7 @@ const ReferralSection = ({ formik }) => {
 							value="self"
 							checked={formik.values.referralSource === "self"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="referralSelf"
@@ -35,7 +35,7 @@ const ReferralSection = ({ formik }) => {
 							value="family"
 							checked={formik.values.referralSource === "family"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="referralFamily"
@@ -53,7 +53,7 @@ const ReferralSection = ({ formik }) => {
 							value="school"
 							checked={formik.values.referralSource === "school"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="referralSchool"
@@ -71,7 +71,7 @@ const ReferralSection = ({ formik }) => {
 							value="hospital"
 							checked={formik.values.referralSource === "hospital"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="referralHospital"
@@ -89,7 +89,7 @@ const ReferralSection = ({ formik }) => {
 							value="clinic"
 							checked={formik.values.referralSource === "clinic"}
 							onChange={formik.handleChange}
-							className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+							className="custom-radio"
 						/>
 						<label
 							htmlFor="referralClinic"
@@ -108,7 +108,7 @@ const ReferralSection = ({ formik }) => {
 								value="other"
 								checked={formik.values.referralSource === "other"}
 								onChange={formik.handleChange}
-								className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+								className="custom-radio"
 							/>
 							<label
 								htmlFor="referralOther"
@@ -126,7 +126,7 @@ const ReferralSection = ({ formik }) => {
 									value={formik.values.referralSourceOther || ""}
 									onChange={formik.handleChange}
 									placeholder="Please specify..."
-									className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+									className="block w-full rounded-md border border-[#DADEE3] p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 								/>
 							</div>
 						)}

@@ -67,7 +67,7 @@ const DevelopmentalFamilyHistory = () => {
 									value={opt.value}
 									checked={birthTerm === opt.value}
 									onChange={(e) => setFieldValue("birthTerm", e.target.value)}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">
 									{opt.label}
@@ -95,7 +95,7 @@ const DevelopmentalFamilyHistory = () => {
 									onChange={(e) =>
 										setFieldValue("deliveryMode", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800 px-2"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">
 									{" "}
@@ -150,7 +150,7 @@ const DevelopmentalFamilyHistory = () => {
 																	e.target.value,
 																)
 															}
-															className="h-4 w-4 accent-gray-800"
+															className="custom-radio"
 														/>
 														<span className="text-sm text-gray-700">
 															{opt.label}
@@ -175,7 +175,7 @@ const DevelopmentalFamilyHistory = () => {
 						onChange={(e) => setFieldValue("familyGenogram", e.target.value)}
 						rows={4}
 						placeholder="Describe family structure, relationships, significant family members..."
-						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+						className="w-full rounded-lg border border-[#DADEE3] p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
 				</div>
 
@@ -201,7 +201,7 @@ const DevelopmentalFamilyHistory = () => {
 									onChange={(e) =>
 										setFieldValue("familyHealthIssues", e.target.value)
 									}
-									className="h-4 w-4 accent-gray-800"
+									className="custom-radio"
 								/>
 								<span className="text-sm text-gray-700">
 									{opt.label}
