@@ -1,12 +1,22 @@
 import { FaFileAlt } from "react-icons/fa";
 import { FiInfo, FiList } from "react-icons/fi";
-import { useEffect, useState } from "react";
 
 const formatDate = (value) => {
 	if (!value) return new Date().toLocaleDateString("en-US");
 	const parsed = new Date(value);
 	if (!Number.isNaN(parsed.getTime())) return parsed.toLocaleDateString("en-US");
 	return String(value);
+};
+
+const formatTime = (value) => {
+	if (!value) return null;
+	const parsed = new Date(value);
+	if (Number.isNaN(parsed.getTime())) return null;
+	return parsed.toLocaleTimeString("en-US", {
+		hour: "numeric",
+		minute: "2-digit",
+		second: "2-digit",
+	});
 };
 
 const CASE_TYPE_LABELS = {
@@ -16,14 +26,7 @@ const CASE_TYPE_LABELS = {
 	"adult-intervention": "Intervention (Adult)",
 };
 
-const Overview = ({ formData }) => {
-	const [now, setNow] = useState(() => new Date());
-
-	useEffect(() => {
-		const intervalId = setInterval(() => setNow(new Date()), 1000);
-		return () => clearInterval(intervalId);
-	}, []);
-
+const Overview = ({ formData, lastSavedAt }) => {
 	const caseId = formData?.caseID?.trim() || "CASE-081555";
 	const picName = formData?.picName?.trim();
 	const picAge = String(formData?.picAge ?? "").trim();
@@ -32,6 +35,7 @@ const Overview = ({ formData }) => {
 	const dateDisplay = formatDate(formData?.consultationDate);
 	const caseTypeLabel =
 		CASE_TYPE_LABELS[formData?.caseType] ?? "Not Set";
+	const timeDisplay = formatTime(lastSavedAt);
 
 	return (
 		<div className="bg-white rounded-xl shadow-md p-6">
@@ -44,13 +48,7 @@ const Overview = ({ formData }) => {
 				</div>
 				<div className="text-right">
 					<p className="text-xs text-gray-500">Auto-saved</p>
-					<p className="text-xs text-gray-500">
-						{now.toLocaleTimeString("en-US", {
-							hour: "numeric",
-							minute: "2-digit",
-							second: "2-digit",
-						})}
-					</p>
+					<p className="text-xs text-gray-500">{timeDisplay ?? "--:--:--"}</p>
 				</div>
 			</div>
 

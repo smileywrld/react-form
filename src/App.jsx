@@ -6,17 +6,50 @@ import Footer from "./components/Footer";
 import BasicInformation from "./components/BasicInformation";
 import CaseTypeSelection from "./components/CaseTypeSelection";
 import Overview from "./components/Overview";
+import SubmissionSuccess from "./components/SubmissionSuccess";
 
 import { DEFAULT_FORM_DATA } from "./wizard/initialFormData";
 import { STEP_COMPONENTS } from "./wizard/stepRegistry";
 import { getSteps } from "./wizard/steps";
+import { validateWithSchema } from "./wizard/validationSchema";
+
+const DRAFT_STORAGE_KEY = "react-form:draft:v1";
+
+const loadDraft = () => {
+	try {
+		const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+		if (!raw) return null;
+		const parsed = JSON.parse(raw);
+		if (!parsed || typeof parsed !== "object") return null;
+		return parsed;
+	} catch {
+		return null;
+	}
+};
 
 function App() {
-	const [currentStepIndex, setCurrentStepIndex] = useState(0);
+	const draft = useMemo(() => loadDraft(), []);
+	const [currentStepIndex, setCurrentStepIndex] = useState(
+		() => draft?.currentStepIndex ?? 0,
+	);
+	const [lastSavedAt, setLastSavedAt] = useState(() => draft?.savedAt ?? null);
+	const [submitted, setSubmitted] = useState(false);
+	const [submittedCaseId, setSubmittedCaseId] = useState(null);
 
 	const formik = useFormik({
-		initialValues: DEFAULT_FORM_DATA,
-		onSubmit: () => {},
+		initialValues: draft?.values ?? DEFAULT_FORM_DATA,
+		validate: validateWithSchema,
+		validateOnBlur: true,
+		validateOnChange: false,
+		onSubmit: async (values) => {
+			setSubmittedCaseId(values?.caseID ?? null);
+			setSubmitted(true);
+			try {
+				window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+			} catch {
+				// ignore
+			}
+		},
 	});
 
 	const formData = formik.values;
@@ -53,6 +86,23 @@ function App() {
 		setCurrentStepIndex(Math.min(steps.length - 1, safeCurrentStepIndex + 1));
 	}, [formData.caseType, formik, safeCurrentStepIndex, steps]);
 
+	const handleSaveDraft = useCallback(() => {
+		const savedAt = new Date().toISOString();
+		setLastSavedAt(savedAt);
+		try {
+			window.localStorage.setItem(
+				DRAFT_STORAGE_KEY,
+				JSON.stringify({
+					values: formik.values,
+					currentStepIndex: safeCurrentStepIndex,
+					savedAt,
+				}),
+			);
+		} catch {
+			// ignore
+		}
+	}, [formik.values, safeCurrentStepIndex]);
+
 	const handleStepChange = useCallback(
 		(index) => setCurrentStepIndex(index),
 		[],
@@ -72,12 +122,39 @@ function App() {
 		return <DynamicComponent />;
 	}, [currentStepId]);
 
+	const handleNewForm = useCallback(() => {
+		setSubmitted(false);
+		setSubmittedCaseId(null);
+		setLastSavedAt(null);
+		setCurrentStepIndex(0);
+		formik.resetForm({ values: DEFAULT_FORM_DATA });
+		try {
+			window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+		} catch {
+			// ignore
+		}
+	}, [formik]);
+
+	const handleExportPdf = useCallback(() => {
+		window.print();
+	}, []);
+
+	if (submitted) {
+		return (
+			<SubmissionSuccess
+				caseID={submittedCaseId ?? formData?.caseID}
+				onNewForm={handleNewForm}
+				onExportPdf={handleExportPdf}
+			/>
+		);
+	}
+
 	return (
 		<FormikProvider value={formik}>
 			<form onSubmit={formik.handleSubmit}>
 				<div className="min-h-screen bg-gray-200 px-56 py-6">
 					<div className="max-w-6xl mx-auto space-y-6">
-						<Overview formData={formData} />
+						<Overview formData={formData} lastSavedAt={lastSavedAt} />
 
 						<div className="bg-white rounded-xl shadow-md p-6">
 							<Header
@@ -91,6 +168,7 @@ function App() {
 							<Footer
 								onPrevious={handlePrevious}
 								onNext={handleNext}
+								onSaveDraft={handleSaveDraft}
 								previousDisabled={!canGoPrevious}
 								nextDisabled={nextDisabled}
 								nextLabel={
