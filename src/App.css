@@ -187,23 +187,39 @@
 }
 
 .custom-radio {
-  appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 9999px;
-  border: 2px solid #3B3B3B;
-  background: #3B3B3B;
+  appearance: none;          /* remove default style */
+  -webkit-appearance: none;  /* Safari */
+  
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.custom-radio:checked {
-  border-color: #ffffff;
-  background: #0E7AFE;
-  outline-color: #0E7AFE;
-}
-
-.custom-radio:focus-visible {
+  position: relative;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  transition: all 0.2s ease;
+}
+
+/* Checked state */
+.custom-radio:checked {
+  border-color: #0E7AFE;
+  background: #0E7AFE;
+}
+
+/* Inner dot */
+.custom-radio:checked::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Focus effect */
+.custom-radio:focus-visible {
+  box-shadow: 0 0 0 3px rgba(14, 122, 254, 0.3);
 }
