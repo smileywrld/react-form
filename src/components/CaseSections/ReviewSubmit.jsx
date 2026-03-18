@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const CASE_TYPE_LABELS = {
 	"child-assessment": "Assessment (Child & Adolescent)",
 	"adult-assessment": "Assessment (Adult)",
@@ -5,15 +7,15 @@ const CASE_TYPE_LABELS = {
 	"adult-intervention": "Intervention (Adult)",
 };
 
-const ReviewSubmit = ({ formData }) => {
-	const caseId = formData?.caseID?.trim() || "CASE-081555";
-	const clientName = formData?.fullName?.trim() || "Not provided";
-	const age = String(formData?.age ?? "").trim() || "Not provided";
-	const assignedTo = formData?.assignedPsychologist?.trim() || "Not assigned";
-	const caseType = CASE_TYPE_LABELS[formData?.caseType] ?? "Not provided";
+const ReviewSubmit = () => {
+	const { values } = useFormikContext();
+	const caseId = values.caseID?.trim() || "CASE-081555";
+	const clientName = values.fullName?.trim() || "Not provided";
+	const age = String(values.age ?? "").trim() || "Not provided";
+	const assignedTo = values.assignedPsychologist?.trim() || "Not assigned";
+	const caseType = CASE_TYPE_LABELS[values.caseType] ?? "Not provided";
 	const consultationDate =
-		formData?.consultationDate?.trim() ||
-		new Date().toISOString().slice(0, 10);
+		values.consultationDate?.trim() || new Date().toISOString().slice(0, 10);
 
 	return (
 		<div>

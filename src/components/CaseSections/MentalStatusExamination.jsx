@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const attitudeOptions = [
 	"Cooperative",
 	"Guarded",
@@ -10,17 +12,18 @@ const speechOptions = ["Normal", "Rapid", "Slow", "Pressured", "Hesitant", "Othe
 
 const affectOptions = ["Appropriate", "Blunted", "Flat", "Labile", "Constricted"];
 
-const MentalStatusExamination = ({ formData, onFormDataChange }) => {
-	const appearance = formData?.mseAppearance ?? "";
-	const attitude = formData?.mseAttitude ?? "";
-	const behavior = formData?.mseBehavior ?? "";
-	const speech = formData?.mseSpeech ?? "";
-	const mood = formData?.mseMood ?? "";
-	const affect = formData?.mseAffect ?? "";
-	const orientationTime = formData?.mseOrientationTime ?? "";
-	const orientationPlace = formData?.mseOrientationPlace ?? "";
-	const orientationPerson = formData?.mseOrientationPerson ?? "";
-	const insight = formData?.mseInsight ?? "";
+const MentalStatusExamination = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const appearance = values.mseAppearance;
+	const attitude = values.mseAttitude;
+	const behavior = values.mseBehavior;
+	const speech = values.mseSpeech;
+	const mood = values.mseMood;
+	const affect = values.mseAffect;
+	const orientationTime = values.mseOrientationTime;
+	const orientationPlace = values.mseOrientationPlace;
+	const orientationPerson = values.mseOrientationPerson;
+	const insight = values.mseInsight;
 
 	return (
 		<div>
@@ -41,7 +44,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 					</label>
 					<textarea
 						value={appearance}
-						onChange={(e) => onFormDataChange?.({ mseAppearance: e.target.value })}
+						onChange={(e) => setFieldValue("mseAppearance", e.target.value)}
 						rows={4}
 						placeholder="Describe client's general appearance, grooming, dress..."
 						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
@@ -60,7 +63,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 									name="mseAttitude"
 									value={opt}
 									checked={attitude === opt}
-									onChange={(e) => onFormDataChange?.({ mseAttitude: e.target.value })}
+									onChange={(e) => setFieldValue("mseAttitude", e.target.value)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -75,7 +78,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 					</label>
 					<textarea
 						value={behavior}
-						onChange={(e) => onFormDataChange?.({ mseBehavior: e.target.value })}
+						onChange={(e) => setFieldValue("mseBehavior", e.target.value)}
 						rows={4}
 						placeholder="Describe observable behaviors, activity level, eye contact..."
 						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
@@ -94,7 +97,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 									name="mseSpeech"
 									value={opt}
 									checked={speech === opt}
-									onChange={(e) => onFormDataChange?.({ mseSpeech: e.target.value })}
+									onChange={(e) => setFieldValue("mseSpeech", e.target.value)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -109,7 +112,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 					</label>
 					<input
 						value={mood}
-						onChange={(e) => onFormDataChange?.({ mseMood: e.target.value })}
+						onChange={(e) => setFieldValue("mseMood", e.target.value)}
 						placeholder="e.g., Happy, Sad, Anxious, Irritable"
 						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
 					/>
@@ -127,7 +130,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 									name="mseAffect"
 									value={opt}
 									checked={affect === opt}
-									onChange={(e) => onFormDataChange?.({ mseAffect: e.target.value })}
+									onChange={(e) => setFieldValue("mseAffect", e.target.value)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -150,7 +153,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 										value={opt}
 										checked={orientationTime === opt}
 										onChange={(e) =>
-											onFormDataChange?.({ mseOrientationTime: e.target.value })
+											setFieldValue("mseOrientationTime", e.target.value)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -172,7 +175,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 										value={opt}
 										checked={orientationPlace === opt}
 										onChange={(e) =>
-											onFormDataChange?.({ mseOrientationPlace: e.target.value })
+											setFieldValue("mseOrientationPlace", e.target.value)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -194,7 +197,7 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 										value={opt}
 										checked={orientationPerson === opt}
 										onChange={(e) =>
-											onFormDataChange?.({ mseOrientationPerson: e.target.value })
+											setFieldValue("mseOrientationPerson", e.target.value)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -216,10 +219,10 @@ const MentalStatusExamination = ({ formData, onFormDataChange }) => {
 									type="radio"
 									name="mseInsight"
 									value={opt}
-									checked={insight === opt}
-									onChange={(e) => onFormDataChange?.({ mseInsight: e.target.value })}
-									className="h-4 w-4 accent-gray-800"
-								/>
+								checked={insight === opt}
+								onChange={(e) => setFieldValue("mseInsight", e.target.value)}
+								className="h-4 w-4 accent-gray-800"
+							/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
 						))}

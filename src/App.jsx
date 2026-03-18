@@ -1,5 +1,5 @@
 import "./App.css";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { FormikProvider, useFormik } from "formik";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -13,7 +13,6 @@ import { getSteps } from "./wizard/steps";
 
 function App() {
 	const [currentStepIndex, setCurrentStepIndex] = useState(0);
-	const basicInformationRef = useRef(null);
 
 	const formik = useFormik({
 		initialValues: DEFAULT_FORM_DATA,
@@ -21,19 +20,6 @@ function App() {
 	});
 
 	const formData = formik.values;
-
-	const handleFormDataChange = useCallback(
-		(next) => {
-			if (typeof next === "function") {
-				formik.setValues(next(formik.values));
-				return;
-			}
-			if (next && typeof next === "object") {
-				formik.setValues({ ...formik.values, ...next });
-			}
-		},
-		[formik],
-	);
 
 	const steps = useMemo(() => {
 		return getSteps(formData.caseType);
@@ -65,7 +51,7 @@ function App() {
 		}
 
 		setCurrentStepIndex(Math.min(steps.length - 1, safeCurrentStepIndex + 1));
-	}, [formData.caseType, safeCurrentStepIndex, steps]);
+	}, [formData.caseType, formik, safeCurrentStepIndex, steps]);
 
 	const handleStepChange = useCallback(
 		(index) => setCurrentStepIndex(index),
@@ -74,7 +60,7 @@ function App() {
 
 	const content = useMemo(() => {
 		if (currentStepId === "basic-information") {
-			return <BasicInformation ref={basicInformationRef} />;
+			return <BasicInformation />;
 		}
 
 		if (currentStepId === "case-type-selection") {

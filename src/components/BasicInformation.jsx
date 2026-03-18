@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormikContext } from "formik";
 
 // Import sections
@@ -9,12 +8,8 @@ import EmergencySection from "./BasicInformation/EmergencySection";
 import ReferralSection from "./BasicInformation/ReferralSection";
 import AssignedPsychologistSection from "./BasicInformation/AssignedPsychologistSection";
 
-const BasicInformation = React.forwardRef((_, ref) => {
+const BasicInformation = () => {
 	const formik = useFormikContext();
-
-	React.useImperativeHandle(ref, () => ({
-		submit: () => formik.submitForm(),
-	}));
 
 	return (
 		<div>
@@ -37,8 +32,6 @@ const BasicInformation = React.forwardRef((_, ref) => {
 			</div>
 		</div>
 	);
-});
-
-BasicInformation.displayName = "BasicInformation";
+};
 
 export default BasicInformation;

@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const relationshipOptions = [
 	"Single",
 	"Married",
@@ -6,11 +8,12 @@ const relationshipOptions = [
 	"In a relationship",
 ];
 
-const OccupationalMaritalHistory = ({ formData, onFormDataChange }) => {
-	const workHistory = formData?.workHistory ?? "";
-	const currentOccupation = formData?.currentOccupation ?? "";
-	const relationshipStatus = formData?.relationshipStatus ?? "";
-	const pastRelationships = formData?.pastRelationships ?? "";
+const OccupationalMaritalHistory = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const workHistory = values.workHistory;
+	const currentOccupation = values.currentOccupation;
+	const relationshipStatus = values.relationshipStatus;
+	const pastRelationships = values.pastRelationships;
 
 	return (
 		<div>
@@ -31,7 +34,7 @@ const OccupationalMaritalHistory = ({ formData, onFormDataChange }) => {
 					</label>
 					<textarea
 						value={workHistory}
-						onChange={(e) => onFormDataChange?.({ workHistory: e.target.value })}
+						onChange={(e) => setFieldValue("workHistory", e.target.value)}
 						rows={4}
 						placeholder="Employment history, job changes, work-related issues..."
 						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
@@ -45,7 +48,7 @@ const OccupationalMaritalHistory = ({ formData, onFormDataChange }) => {
 					<input
 						value={currentOccupation}
 						onChange={(e) =>
-							onFormDataChange?.({ currentOccupation: e.target.value })
+							setFieldValue("currentOccupation", e.target.value)
 						}
 						placeholder="Current job title or employment status"
 						className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
@@ -65,7 +68,7 @@ const OccupationalMaritalHistory = ({ formData, onFormDataChange }) => {
 									value={opt}
 									checked={relationshipStatus === opt}
 									onChange={(e) =>
-										onFormDataChange?.({ relationshipStatus: e.target.value })
+										setFieldValue("relationshipStatus", e.target.value)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -82,7 +85,7 @@ const OccupationalMaritalHistory = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={pastRelationships}
 						onChange={(e) =>
-							onFormDataChange?.({ pastRelationships: e.target.value })
+							setFieldValue("pastRelationships", e.target.value)
 						}
 						rows={4}
 						placeholder="Significant past relationships, patterns..."

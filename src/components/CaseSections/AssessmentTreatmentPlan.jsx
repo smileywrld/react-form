@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const diagnosisOptions = [
 	"ASD (Autism Spectrum Disorder)",
 	"ADHD (Attention-Deficit/Hyperactivity Disorder)",
@@ -78,20 +80,25 @@ const referralOptions = [
 const toggleFromArray = (arr, value) =>
 	arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value];
 
-const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
-	const isAdultAssessment = formData?.caseType === "adult-assessment";
+const AssessmentTreatmentPlan = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const isAdultAssessment = values.caseType === "adult-assessment";
 
-	const adultClinicalImpression = formData?.adultClinicalImpression ?? "";
-	const adultComorbidityPresent = formData?.adultComorbidityPresent ?? "";
-	const adultAssessmentRecommendation = formData?.adultAssessmentRecommendation ?? "";
-	const adultAssessmentJustification = formData?.adultAssessmentJustification ?? "";
+	const adultClinicalImpression = values.adultClinicalImpression;
+	const adultComorbidityPresent = values.adultComorbidityPresent;
+	const adultAssessmentRecommendation = values.adultAssessmentRecommendation;
+	const adultAssessmentJustification = values.adultAssessmentJustification;
 
-	const provisionalDiagnosis = formData?.provisionalDiagnosis ?? [];
-	const treatmentFrequency = formData?.treatmentFrequency ?? {};
-	const parentRecommendations = formData?.parentRecommendations ?? [];
-	const assessmentRecommendations = formData?.assessmentRecommendations ?? [];
-	const followupTimeline = formData?.followupTimeline ?? [];
-	const referrals = formData?.referrals ?? [];
+	const provisionalDiagnosis = values.provisionalDiagnosis;
+	const treatmentFrequency = values.treatmentFrequency;
+	const parentRecommendations = values.parentRecommendations;
+	const assessmentRecommendations = values.assessmentRecommendations;
+	const followupTimeline = values.followupTimeline;
+	const referrals = values.referrals;
+
+	const toggleArrayField = (field, option) => {
+		setFieldValue(field, toggleFromArray(values[field] ?? [], option));
+	};
 
 	return (
 		<div>
@@ -128,9 +135,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 										value={opt}
 										checked={adultClinicalImpression === opt}
 										onChange={(e) =>
-											onFormDataChange?.({
-												adultClinicalImpression: e.target.value,
-											})
+											setFieldValue("adultClinicalImpression", e.target.value)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -157,9 +162,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 										value={opt.value}
 										checked={adultComorbidityPresent === opt.value}
 										onChange={(e) =>
-											onFormDataChange?.({
-												adultComorbidityPresent: e.target.value,
-											})
+											setFieldValue("adultComorbidityPresent", e.target.value)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -189,9 +192,10 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 										value={opt}
 										checked={adultAssessmentRecommendation === opt}
 										onChange={(e) =>
-											onFormDataChange?.({
-												adultAssessmentRecommendation: e.target.value,
-											})
+											setFieldValue(
+												"adultAssessmentRecommendation",
+												e.target.value,
+											)
 										}
 										className="h-4 w-4 accent-gray-800"
 									/>
@@ -208,7 +212,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 						<textarea
 							value={adultAssessmentJustification}
 							onChange={(e) =>
-								onFormDataChange?.({ adultAssessmentJustification: e.target.value })
+								setFieldValue("adultAssessmentJustification", e.target.value)
 							}
 							rows={5}
 							placeholder="Provide rationale for the recommended assessment..."
@@ -231,15 +235,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 								<input
 									type="checkbox"
 									checked={provisionalDiagnosis.includes(opt)}
-									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											provisionalDiagnosis: toggleFromArray(
-												prev.provisionalDiagnosis ?? [],
-												opt,
-											),
-										}))
-									}
+									onChange={() => toggleArrayField("provisionalDiagnosis", opt)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -283,14 +279,10 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 																treatmentFrequency?.[row] === f
 															}
 															onChange={(e) =>
-																onFormDataChange?.((prev) => ({
-																	...prev,
-																	treatmentFrequency: {
-																		...(prev.treatmentFrequency ??
-																			{}),
-																		[row]: e.target.value,
-																	},
-																}))
+																setFieldValue("treatmentFrequency", {
+																	...treatmentFrequency,
+																	[row]: e.target.value,
+																})
 															}
 															className="h-4 w-4 accent-gray-800"
 														/>
@@ -321,15 +313,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 								<input
 									type="checkbox"
 									checked={parentRecommendations.includes(opt)}
-									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											parentRecommendations: toggleFromArray(
-												prev.parentRecommendations ?? [],
-												opt,
-											),
-										}))
-									}
+									onChange={() => toggleArrayField("parentRecommendations", opt)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -352,13 +336,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 									type="checkbox"
 									checked={assessmentRecommendations.includes(opt)}
 									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											assessmentRecommendations: toggleFromArray(
-												prev.assessmentRecommendations ?? [],
-												opt,
-											),
-										}))
+										toggleArrayField("assessmentRecommendations", opt)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -381,15 +359,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 								<input
 									type="checkbox"
 									checked={followupTimeline.includes(opt)}
-									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											followupTimeline: toggleFromArray(
-												prev.followupTimeline ?? [],
-												opt,
-											),
-										}))
-									}
+									onChange={() => toggleArrayField("followupTimeline", opt)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
@@ -411,15 +381,7 @@ const AssessmentTreatmentPlan = ({ formData, onFormDataChange }) => {
 								<input
 									type="checkbox"
 									checked={referrals.includes(opt)}
-									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											referrals: toggleFromArray(
-												prev.referrals ?? [],
-												opt,
-											),
-										}))
-									}
+									onChange={() => toggleArrayField("referrals", opt)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>

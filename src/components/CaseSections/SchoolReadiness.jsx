@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const personalInfoRows = [
 	"Full name",
 	"Age",
@@ -109,31 +111,24 @@ const RadioTable = ({ title, leftHeader, rows, valueMap, onChange }) => (
 	</div>
 );
 
-const SchoolReadiness = ({ formData, onFormDataChange }) => {
-	const personalInfo = formData?.schoolReadinessPersonalInfo ?? {};
-	const reading = formData?.schoolReadinessReading ?? {};
-	const writing = formData?.schoolReadinessWriting ?? {};
-	const math = formData?.schoolReadinessMath ?? {};
-	const communicationMethods = formData?.communicationMethods ?? [];
+const SchoolReadiness = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const personalInfo = values.schoolReadinessPersonalInfo;
+	const reading = values.schoolReadinessReading;
+	const writing = values.schoolReadinessWriting;
+	const math = values.schoolReadinessMath;
+	const communicationMethods = values.communicationMethods;
 
 	const setTableValue = (key, label, value) => {
-		onFormDataChange?.((prev) => ({
-			...prev,
-			[key]: {
-				...(prev[key] ?? {}),
-				[label]: value,
-			},
-		}));
+		const existing = values[key] ?? {};
+		setFieldValue(key, { ...existing, [label]: value });
 	};
 
 	const toggleCommunication = (value) => {
-		onFormDataChange?.((prev) => {
-			const existing = prev.communicationMethods ?? [];
-			const next = existing.includes(value)
-				? existing.filter((v) => v !== value)
-				: [...existing, value];
-			return { ...prev, communicationMethods: next };
-		});
+		const next = communicationMethods.includes(value)
+			? communicationMethods.filter((v) => v !== value)
+			: [...communicationMethods, value];
+		setFieldValue("communicationMethods", next);
 	};
 
 	return (

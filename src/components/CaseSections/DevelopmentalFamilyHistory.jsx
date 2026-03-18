@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const birthTermOptions = [
 	{ value: "early", label: "Early" },
 	{ value: "full-term", label: "Full term" },
@@ -30,12 +32,13 @@ const milestoneOptions = [
 	{ value: "not-sure", label: "Not Sure" },
 ];
 
-const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
-	const birthTerm = formData?.birthTerm ?? "";
-	const deliveryMode = formData?.deliveryMode ?? "";
-	const milestones = formData?.developmentalMilestones ?? {};
-	const familyGenogram = formData?.familyGenogram ?? "";
-	const familyHealthIssues = formData?.familyHealthIssues ?? "";
+const DevelopmentalFamilyHistory = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const birthTerm = values.birthTerm;
+	const deliveryMode = values.deliveryMode;
+	const milestones = values.developmentalMilestones;
+	const familyGenogram = values.familyGenogram;
+	const familyHealthIssues = values.familyHealthIssues;
 
 	return (
 		<div>
@@ -63,9 +66,7 @@ const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
 									name="birthTerm"
 									value={opt.value}
 									checked={birthTerm === opt.value}
-									onChange={(e) =>
-										onFormDataChange?.({ birthTerm: e.target.value })
-									}
+									onChange={(e) => setFieldValue("birthTerm", e.target.value)}
 									className="h-4 w-4 accent-gray-800"
 								/>
 								<span className="text-sm text-gray-700">
@@ -92,9 +93,7 @@ const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
 									value={opt.value}
 									checked={deliveryMode === opt.value}
 									onChange={(e) =>
-										onFormDataChange?.({
-											deliveryMode: e.target.value,
-										})
+										setFieldValue("deliveryMode", e.target.value)
 									}
 									className="h-4 w-4 accent-gray-800 px-2"
 								/>
@@ -146,14 +145,10 @@ const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
 																opt.value
 															}
 															onChange={(e) =>
-																onFormDataChange?.((prev) => ({
-																	...prev,
-																	developmentalMilestones: {
-																		...(prev.developmentalMilestones ??
-																			{}),
-																		[row.key]: e.target.value,
-																	},
-																}))
+																setFieldValue(
+																	`developmentalMilestones.${row.key}`,
+																	e.target.value,
+																)
 															}
 															className="h-4 w-4 accent-gray-800"
 														/>
@@ -177,9 +172,7 @@ const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
 					</label>
 					<textarea
 						value={familyGenogram}
-						onChange={(e) =>
-							onFormDataChange?.({ familyGenogram: e.target.value })
-						}
+						onChange={(e) => setFieldValue("familyGenogram", e.target.value)}
 						rows={4}
 						placeholder="Describe family structure, relationships, significant family members..."
 						className="w-full border border-gray-200 rounded-lg p-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
@@ -206,9 +199,7 @@ const DevelopmentalFamilyHistory = ({ formData, onFormDataChange }) => {
 									value={opt.value}
 									checked={familyHealthIssues === opt.value}
 									onChange={(e) =>
-										onFormDataChange?.({
-											familyHealthIssues: e.target.value,
-										})
+										setFieldValue("familyHealthIssues", e.target.value)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>

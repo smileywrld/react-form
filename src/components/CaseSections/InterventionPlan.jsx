@@ -1,3 +1,5 @@
+import { useFormikContext } from "formik";
+
 const clinicalImpressionOptions = [
 	"Depressive Disorder",
 	"Anxiety Disorder",
@@ -52,17 +54,22 @@ const referralOptions = [
 const toggleFromArray = (arr, value) =>
 	arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value];
 
-const InterventionPlan = ({ formData, onFormDataChange }) => {
-	const clinicalImpression = formData?.interventionClinicalImpression ?? "";
-	const differentialDiagnosis = formData?.interventionDifferentialDiagnosis ?? "";
-	const caseFormulation = formData?.interventionCaseFormulation ?? "";
-	const assessmentRequirement = formData?.interventionAssessmentRequirement ?? "";
-	const sessionPlan = formData?.interventionSessionPlan ?? [];
-	const safetyPlanDetails = formData?.interventionSafetyPlanDetails ?? "";
-	const clientRecommendations = formData?.interventionClientRecommendations ?? [];
-	const homeworkTasks = formData?.interventionHomeworkTasks ?? "";
-	const referrals = formData?.interventionReferrals ?? [];
-	const followUpPlan = formData?.interventionFollowUpPlan ?? "";
+const InterventionPlan = () => {
+	const { values, setFieldValue } = useFormikContext();
+	const clinicalImpression = values.interventionClinicalImpression;
+	const differentialDiagnosis = values.interventionDifferentialDiagnosis;
+	const caseFormulation = values.interventionCaseFormulation;
+	const assessmentRequirement = values.interventionAssessmentRequirement;
+	const sessionPlan = values.interventionSessionPlan;
+	const safetyPlanDetails = values.interventionSafetyPlanDetails;
+	const clientRecommendations = values.interventionClientRecommendations;
+	const homeworkTasks = values.interventionHomeworkTasks;
+	const referrals = values.interventionReferrals;
+	const followUpPlan = values.interventionFollowUpPlan;
+
+	const toggleArrayField = (field, option) => {
+		setFieldValue(field, toggleFromArray(values[field] ?? [], option));
+	};
 
 	return (
 		<div>
@@ -88,9 +95,10 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 									value={opt}
 									checked={clinicalImpression === opt}
 									onChange={(e) =>
-										onFormDataChange?.({
-											interventionClinicalImpression: e.target.value,
-										})
+										setFieldValue(
+											"interventionClinicalImpression",
+											e.target.value,
+										)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -107,9 +115,10 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={differentialDiagnosis}
 						onChange={(e) =>
-							onFormDataChange?.({
-								interventionDifferentialDiagnosis: e.target.value,
-							})
+							setFieldValue(
+								"interventionDifferentialDiagnosis",
+								e.target.value,
+							)
 						}
 						rows={4}
 						placeholder="List alternative diagnoses to consider..."
@@ -124,7 +133,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={caseFormulation}
 						onChange={(e) =>
-							onFormDataChange?.({ interventionCaseFormulation: e.target.value })
+							setFieldValue("interventionCaseFormulation", e.target.value)
 						}
 						rows={4}
 						placeholder="Provide comprehensive case formulation including predisposing, precipitating, perpetuating, and protective factors..."
@@ -149,9 +158,10 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 									value={opt.value}
 									checked={assessmentRequirement === opt.value}
 									onChange={(e) =>
-										onFormDataChange?.({
-											interventionAssessmentRequirement: e.target.value,
-										})
+										setFieldValue(
+											"interventionAssessmentRequirement",
+											e.target.value,
+										)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -172,13 +182,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 									type="checkbox"
 									checked={sessionPlan.includes(opt)}
 									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											interventionSessionPlan: toggleFromArray(
-												prev.interventionSessionPlan ?? [],
-												opt,
-											),
-										}))
+										toggleArrayField("interventionSessionPlan", opt)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -195,9 +199,10 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={safetyPlanDetails}
 						onChange={(e) =>
-							onFormDataChange?.({
-								interventionSafetyPlanDetails: e.target.value,
-							})
+							setFieldValue(
+								"interventionSafetyPlanDetails",
+								e.target.value,
+							)
 						}
 						rows={4}
 						placeholder="Document detailed safety plan including: warning signs, coping strategies, people/places for support, professionals to contact, methods to secure environment..."
@@ -216,13 +221,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 									type="checkbox"
 									checked={clientRecommendations.includes(opt)}
 									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											interventionClientRecommendations: toggleFromArray(
-												prev.interventionClientRecommendations ?? [],
-												opt,
-											),
-										}))
+										toggleArrayField("interventionClientRecommendations", opt)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -239,7 +238,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={homeworkTasks}
 						onChange={(e) =>
-							onFormDataChange?.({ interventionHomeworkTasks: e.target.value })
+							setFieldValue("interventionHomeworkTasks", e.target.value)
 						}
 						rows={4}
 						placeholder="Specify homework assignments, self-monitoring tasks, practice exercises..."
@@ -258,13 +257,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 									type="checkbox"
 									checked={referrals.includes(opt)}
 									onChange={() =>
-										onFormDataChange?.((prev) => ({
-											...prev,
-											interventionReferrals: toggleFromArray(
-												prev.interventionReferrals ?? [],
-												opt,
-											),
-										}))
+										toggleArrayField("interventionReferrals", opt)
 									}
 									className="h-4 w-4 accent-gray-800"
 								/>
@@ -281,7 +274,7 @@ const InterventionPlan = ({ formData, onFormDataChange }) => {
 					<textarea
 						value={followUpPlan}
 						onChange={(e) =>
-							onFormDataChange?.({ interventionFollowUpPlan: e.target.value })
+							setFieldValue("interventionFollowUpPlan", e.target.value)
 						}
 						rows={4}
 						placeholder="Specify frequency of sessions, duration of treatment, review points, termination criteria..."
