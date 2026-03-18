@@ -38,15 +38,15 @@ const Overview = ({ formData, lastSavedAt }) => {
 	const timeDisplay = formatTime(lastSavedAt);
 
 	return (
-		<div className="bg-white rounded-xl shadow-md p-6">
-			<div className="flex items-start justify-between">
+		<div className="rounded-xl bg-white p-4 shadow-md sm:p-6">
+			<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div className="flex items-center gap-3">
-					<FaFileAlt className="text-indigo-600 text-2xl" />
-					<h1 className="text-base font-semibold text-gray-900">
+					<FaFileAlt className="shrink-0 text-2xl text-indigo-600" />
+					<h1 className="text-sm font-semibold text-gray-900 sm:text-base">
 						Clinical Psychologist Intake Form
 					</h1>
 				</div>
-				<div className="text-right">
+				<div className="text-left sm:text-right">
 					<p className="text-xs text-gray-500">Auto-saved</p>
 					<p className="text-xs text-gray-500">{timeDisplay ?? "--:--:--"}</p>
 				</div>
@@ -67,9 +67,9 @@ const Overview = ({ formData, lastSavedAt }) => {
 				</p>
 			</div>
 
-			<div className="mt-5 bg-indigo-50 border border-indigo-200 rounded-lg px-4 py-3 flex items-center justify-between">
-				<div className="flex items-center gap-2 text-sm text-indigo-900">
-					<FiInfo className="text-indigo-600" />
+			<div className="mt-5 flex flex-col gap-3 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+				<div className="flex items-start gap-2 text-sm text-indigo-900 sm:items-center">
+					<FiInfo className="mt-0.5 shrink-0 text-indigo-600 sm:mt-0" />
 					<p>
 						<span className="font-semibold">Case Type:</span>{" "}
 						<span className="font-medium">{caseTypeLabel}</span>
@@ -77,7 +77,7 @@ const Overview = ({ formData, lastSavedAt }) => {
 				</div>
 				<button
 					type="button"
-					className="flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+					className="inline-flex items-center gap-2 self-start text-sm font-medium text-indigo-600 hover:text-indigo-700 sm:self-auto"
 				>
 					<FiList />
 					Sections

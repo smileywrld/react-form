@@ -2,7 +2,7 @@ import React from "react";
 
 const EmergencySection = ({ formik }) => {
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-1 gap-6 md:grid-cols-2 mt-5">
+		<div className="mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
 			<div>
 				<label className="block text-sm font-medium text-gray-700">
 					Emergency Contact 1 <span className="text-red-600">*</span>

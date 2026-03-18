@@ -18,7 +18,7 @@ const ClientDetailsSection = ({ formik }) => {
 			</div>
 
 			{/* Age and Sex */}
-			<div className="grid grid-cols-2 gap-4 mt-5">
+			<div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
 				<div>
 					<label htmlFor="age" className="text-[#364153]">
 						Age <span className="text-red-600">*</span>
@@ -36,7 +36,7 @@ const ClientDetailsSection = ({ formik }) => {
 					<label className="text-[#364153]">
 						Sex <span className="text-red-600">*</span>
 					</label>
-					<div className="flex gap-4 mt-1">
+					<div className="mt-1 flex flex-wrap gap-4">
 						<label className="text-[#364153] flex items-center">
 							<input
 								type="radio"

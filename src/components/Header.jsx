@@ -13,21 +13,21 @@ const Header = ({ steps, currentStepIndex, onStepChange }) => {
 
 	return (
 		<div>
-			<div className="flex items-center justify-between">
+			<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 				<div>
 					<p className="text-sm text-gray-500">{sectionLabel}</p>
 					<h2 className="text-base font-semibold text-gray-900 mt-1">
 						{stepTitle}
 					</h2>
 				</div>
-				<p className="text-sm text-gray-500">{percentComplete}</p>
+				<p className="text-sm text-gray-500 sm:text-right">{percentComplete}</p>
 			</div>
 
 			<div className="mt-4">
 				<ProgressBar currentStep={currentStepNumber} totalSteps={totalSteps} showLabels={false} />
 			</div>
 
-			<div className="flex gap-2 mt-4 overflow-x-auto whitespace-nowrap pb-2">
+			<div className="mt-4 flex gap-2 overflow-x-auto whitespace-nowrap pb-2">
 				{steps.map((step, index) => {
 					const isActive = index === currentStepIndex;
 					const isCompleted = index < currentStepIndex;
@@ -42,7 +42,7 @@ const Header = ({ steps, currentStepIndex, onStepChange }) => {
 								if (typeof onStepChange === "function") onStepChange(index);
 							}}
 							disabled={!isClickable}
-							className={`px-3 py-1.5 rounded-md text-sm border inline-flex items-center gap-2 ${
+							className={`inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-1.5 text-xs sm:text-sm ${
 								isCompleted
 									? "bg-green-100 border-green-200 text-green-700"
 									: isActive

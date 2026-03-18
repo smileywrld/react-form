@@ -152,11 +152,11 @@ function App() {
 	return (
 		<FormikProvider value={formik}>
 			<form onSubmit={formik.handleSubmit}>
-				<div className="min-h-screen bg-gray-200 px-56 py-6">
-					<div className="max-w-6xl mx-auto space-y-6">
+				<div className="min-h-screen bg-gray-200 px-4 py-4 sm:px-6 sm:py-6 lg:px-12 xl:px-20 2xl:px-32">
+					<div className="mx-auto max-w-6xl space-y-4 sm:space-y-6">
 						<Overview formData={formData} lastSavedAt={lastSavedAt} />
 
-						<div className="bg-white rounded-xl shadow-md p-6">
+						<div className="rounded-xl bg-white p-4 shadow-md sm:p-6">
 							<Header
 								steps={steps}
 								currentStepIndex={safeCurrentStepIndex}

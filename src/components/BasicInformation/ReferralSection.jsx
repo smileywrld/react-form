@@ -2,13 +2,13 @@ import React from "react";
 
 const ReferralSection = ({ formik }) => {
 	return (
-		<div className="grid lg:grid-cols-1 gap-6 md:grid-cols-2 mt-5">
+		<div className="mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
 			{/* Referral Source */}
 			<div>
 				<label className="text-sm font-medium text-gray-700 mb-2">
 					Referral Source <span className="text-red-600">*</span>
 				</label>
-				<div className="space-y-2 flex gap-2 flex-wrap">
+				<div className="flex flex-wrap gap-x-4 gap-y-2">
 					<div className="flex items-center">
 						<input
 							type="radio"
@@ -99,7 +99,7 @@ const ReferralSection = ({ formik }) => {
 						</label>
 					</div>
 
-					<div className="flex items-start">
+					<div className="flex w-full flex-col gap-2 sm:flex-row sm:items-start">
 						<div className="flex items-center">
 							<input
 								type="radio"
@@ -119,7 +119,7 @@ const ReferralSection = ({ formik }) => {
 						</div>
 
 						{formik.values.referralSource === "other" && (
-							<div className="ml-6 mt-2 w-full">
+							<div className="w-full sm:ml-6 sm:mt-0">
 								<input
 									type="text"
 									name="referralSourceOther"
