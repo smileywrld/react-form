@@ -28,6 +28,9 @@ const loadDraft = () => {
 	}
 };
 
+const generateCaseId = () =>
+	`CASE-${Math.floor(100000 + Math.random() * 900000)}`;
+
 function App() {
 	const draft = useMemo(() => loadDraft(), []);
 	const [currentStepIndex, setCurrentStepIndex] = useState(
@@ -39,7 +42,10 @@ function App() {
 	const [stepValidationMessage, setStepValidationMessage] = useState("");
 
 	const formik = useFormik({
-		initialValues: draft?.values ?? DEFAULT_FORM_DATA,
+		initialValues: draft?.values ?? {
+			...DEFAULT_FORM_DATA,
+			caseID: generateCaseId(),
+		},
 		validate: validateWithSchema,
 		validateOnBlur: true,
 		validateOnChange: false,
@@ -153,7 +159,12 @@ function App() {
 		setSubmittedCaseId(null);
 		setLastSavedAt(null);
 		setCurrentStepIndex(0);
-		formik.resetForm({ values: DEFAULT_FORM_DATA });
+		formik.resetForm({
+			values: {
+				...DEFAULT_FORM_DATA,
+				caseID: generateCaseId(),
+			},
+		});
 		try {
 			window.localStorage.removeItem(DRAFT_STORAGE_KEY);
 		} catch {
