@@ -144,7 +144,7 @@ const MentalStatusExamination = () => {
 						<label className="block text-sm font-medium text-gray-700 mb-3">
 							Orientation - Time <span className="text-red-500">*</span>
 						</label>
-						<div className="space-y-3">
+						<div className="space-y-3 flex flex-col">
 							{["Oriented", "Disoriented"].map((opt) => (
 								<label key={opt} className="inline-flex items-center gap-2">
 									<input
@@ -166,7 +166,7 @@ const MentalStatusExamination = () => {
 						<label className="block text-sm font-medium text-gray-700 mb-3">
 							Orientation - Place <span className="text-red-500">*</span>
 						</label>
-						<div className="space-y-3">
+						<div className="space-y-3 flex flex-col">
 							{["Oriented", "Disoriented"].map((opt) => (
 								<label key={opt} className="inline-flex items-center gap-2">
 									<input
@@ -188,7 +188,7 @@ const MentalStatusExamination = () => {
 						<label className="block text-sm font-medium text-gray-700 mb-3">
 							Orientation - Person <span className="text-red-500">*</span>
 						</label>
-						<div className="space-y-3">
+						<div className="space-y-3 flex flex-col">
 							{["Oriented", "Disoriented"].map((opt) => (
 								<label key={opt} className="inline-flex items-center gap-2">
 									<input

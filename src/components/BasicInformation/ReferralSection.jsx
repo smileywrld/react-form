@@ -9,7 +9,7 @@ const ReferralSection = ({ formik }) => {
 					Referral Source <span className="text-red-600">*</span>
 				</label>
 				<div className="flex flex-wrap gap-x-4 gap-y-2">
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="referralSource"
@@ -19,15 +19,12 @@ const ReferralSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="referralSelf"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							Self
-						</label>
-					</div>
+						</span>
+					</label>
 
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="referralSource"
@@ -37,15 +34,12 @@ const ReferralSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="referralFamily"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							Family
-						</label>
-					</div>
+						</span>
+					</label>
 
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="referralSource"
@@ -55,15 +49,12 @@ const ReferralSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="referralSchool"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							School
-						</label>
-					</div>
+						</span>
+					</label>
 
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="referralSource"
@@ -73,15 +64,12 @@ const ReferralSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="referralHospital"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							Hospital
-						</label>
-					</div>
+						</span>
+					</label>
 
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="referralSource"
@@ -91,16 +79,13 @@ const ReferralSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="referralClinic"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							Clinic
-						</label>
-					</div>
+						</span>
+					</label>
 
 					<div className="flex w-full flex-col gap-2 sm:flex-row sm:items-start">
-						<div className="flex items-center">
+						<label className="radio-option">
 							<input
 								type="radio"
 								name="referralSource"
@@ -110,13 +95,10 @@ const ReferralSection = ({ formik }) => {
 								onChange={formik.handleChange}
 								className="custom-radio"
 							/>
-							<label
-								htmlFor="referralOther"
-								className="ml-2 block text-sm text-gray-700"
-							>
+							<span className="block text-sm text-gray-700">
 								Other
-							</label>
-						</div>
+							</span>
+						</label>
 
 						{formik.values.referralSource === "other" && (
 							<div className="w-full sm:ml-6 sm:mt-0">

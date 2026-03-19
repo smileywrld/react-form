@@ -37,38 +37,38 @@ const ClientDetailsSection = ({ formik }) => {
 						Sex <span className="text-red-600">*</span>
 					</label>
 					<div className="mt-1 flex flex-wrap gap-4">
-						<label className="text-[#364153] flex items-center">
+						<label className="radio-option text-[#364153]">
 							<input
 								type="radio"
 								name="sex"
 								value="Male"
 								checked={formik.values.sex === "Male"}
 								onChange={formik.handleChange}
-								className="mx-1"
+								className="custom-radio"
 							/>
 							Male
 						</label>
 
-						<label className="text-[#364153] flex items-center">
+						<label className="radio-option text-[#364153]">
 							<input
 								type="radio"
 								name="sex"
 								value="Female"
 								checked={formik.values.sex === "Female"}
 								onChange={formik.handleChange}
-								className="mx-1"
+								className="custom-radio"
 							/>
 							Female
 						</label>
 
-						<label className="text-[#364153] flex items-center">
+						<label className="radio-option text-[#364153]">
 							<input
 								type="radio"
 								name="sex"
 								value="Other"
 								checked={formik.values.sex === "Other"}
 								onChange={formik.handleChange}
-								className="mx-1"
+								className="custom-radio"
 							/>
 							Other
 						</label>

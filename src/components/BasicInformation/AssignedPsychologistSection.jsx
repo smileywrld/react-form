@@ -7,7 +7,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 				Assigned Psychologist <span className="text-red-600">*</span>
 			</label>
 			<div className="space-y-2">
-				<div className="flex items-center">
+				<label className="radio-option">
 					<input
 						type="radio"
 						name="assignedPsychologist"
@@ -17,15 +17,12 @@ const AssignedPsychologistSection = ({ formik }) => {
 						onChange={formik.handleChange}
 						className="custom-radio"
 					/>
-					<label
-						htmlFor="psychMsLee"
-						className="ml-2 block text-sm text-gray-700"
-					>
+					<span className="block text-sm text-gray-700">
 						Ms. Lee Li Li
-					</label>
-				</div>
+					</span>
+				</label>
 
-				<div className="flex items-center">
+				<label className="radio-option">
 					<input
 						type="radio"
 						name="assignedPsychologist"
@@ -35,16 +32,13 @@ const AssignedPsychologistSection = ({ formik }) => {
 						onChange={formik.handleChange}
 						className="custom-radio"
 					/>
-					<label
-						htmlFor="psychMsHiew"
-						className="ml-2 block text-sm text-gray-700"
-					>
+					<span className="block text-sm text-gray-700">
 						Ms. Hiew Yuk Wei
-					</label>
-				</div>
+					</span>
+				</label>
 
 				<div className="flex items-start">
-					<div className="flex items-center">
+					<label className="radio-option">
 						<input
 							type="radio"
 							name="assignedPsychologist"
@@ -54,13 +48,10 @@ const AssignedPsychologistSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<label
-							htmlFor="psychOther"
-							className="ml-2 block text-sm text-gray-700"
-						>
+						<span className="block text-sm text-gray-700">
 							Other
-						</label>
-					</div>
+						</span>
+					</label>
 
 					{formik.values.assignedPsychologist === "other" && (
 						<div className="ml-6 mt-2 w-full">

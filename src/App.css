@@ -188,33 +188,28 @@
 
 .custom-radio {
   appearance: none;
-  /* remove default style */
   -webkit-appearance: none;
-  /* Safari */
-
   width: 18px;
   height: 18px;
   border-radius: 50%;
   cursor: pointer;
-  border: solid 2px #555;
+  border: 2px solid #3B3B3B;
   background-color: #3B3B3B;
   position: relative;
   outline: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Checked state */
 .custom-radio:checked {
   border-color: #0E7AFE;
-  background: #0E7AFE;
+  background: #FFFFFF;
 }
 
-/* Inner dot */
 .custom-radio:checked::before {
   content: "";
-  width: 10px;
-  height: 10px;
-  background: white;
+  width: 8px;
+  height: 8px;
+  background: #0E7AFE;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -222,7 +217,12 @@
   transform: translate(-50%, -50%);
 }
 
-/* Focus effect */
 .custom-radio:focus-visible {
   box-shadow: 0 0 0 3px rgba(14, 122, 254, 0.3);
+}
+
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
 }
