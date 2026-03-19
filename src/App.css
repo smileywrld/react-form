@@ -207,8 +207,8 @@
 
 .custom-radio:checked::before {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background: #0E7AFE;
   border-radius: 50%;
   position: absolute;
@@ -226,3 +226,4 @@
   align-items: center;
   gap: 0.375rem;
 }
+

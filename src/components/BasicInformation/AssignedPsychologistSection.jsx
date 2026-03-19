@@ -2,11 +2,11 @@ import React from "react";
 
 const AssignedPsychologistSection = ({ formik }) => {
 	return (
-		<div>
+		<div className="mt-5">
 			<label className="block text-sm font-medium text-gray-700 mb-2">
 				Assigned Psychologist <span className="text-red-600">*</span>
 			</label>
-			<div className="space-y-2">
+			<div className="space-y-2 flex-col flex">
 				<label className="radio-option">
 					<input
 						type="radio"
@@ -48,9 +48,7 @@ const AssignedPsychologistSection = ({ formik }) => {
 							onChange={formik.handleChange}
 							className="custom-radio"
 						/>
-						<span className="block text-sm text-gray-700">
-							Other
-						</span>
+						<span className="block text-sm text-gray-700">Other</span>
 					</label>
 
 					{formik.values.assignedPsychologist === "other" && (
