@@ -11,6 +11,7 @@ import SubmissionSuccess from "./components/SubmissionSuccess";
 import { DEFAULT_FORM_DATA } from "./wizard/initialFormData";
 import { STEP_COMPONENTS } from "./wizard/stepRegistry";
 import { getSteps } from "./wizard/steps";
+import { buildTouchedMap, getStepValidationFields } from "./wizard/stepValidation";
 import { validateWithSchema } from "./wizard/validationSchema";
 
 const DRAFT_STORAGE_KEY = "react-form:draft:v1";
@@ -35,6 +36,7 @@ function App() {
 	const [lastSavedAt, setLastSavedAt] = useState(() => draft?.savedAt ?? null);
 	const [submitted, setSubmitted] = useState(false);
 	const [submittedCaseId, setSubmittedCaseId] = useState(null);
+	const [stepValidationMessage, setStepValidationMessage] = useState("");
 
 	const formik = useFormik({
 		initialValues: draft?.values ?? DEFAULT_FORM_DATA,
@@ -71,12 +73,33 @@ function App() {
 		(currentStepId === "case-type-selection" && !formData.caseType);
 
 	const handlePrevious = useCallback(() => {
+		setStepValidationMessage("");
 		setCurrentStepIndex(Math.max(0, safeCurrentStepIndex - 1));
 	}, [safeCurrentStepIndex]);
 
 	const handleNext = useCallback(async () => {
 		const stepId = steps[safeCurrentStepIndex]?.id;
 		if (stepId === "case-type-selection" && !formData.caseType) return;
+
+		const fieldsToValidate = getStepValidationFields(stepId, formData.caseType);
+		if (fieldsToValidate.length > 0) {
+			const errors = await formik.validateForm();
+			const hasStepErrors = fieldsToValidate.some((field) => Boolean(errors?.[field]));
+
+			if (hasStepErrors) {
+				setStepValidationMessage("Please complete all required fields in this section before continuing.");
+				formik.setTouched(
+					{
+						...formik.touched,
+						...buildTouchedMap(fieldsToValidate),
+					},
+					true,
+				);
+				return;
+			}
+		}
+
+		setStepValidationMessage("");
 
 		if (safeCurrentStepIndex >= steps.length - 1) {
 			await formik.submitForm();
@@ -104,7 +127,10 @@ function App() {
 	}, [formik.values, safeCurrentStepIndex]);
 
 	const handleStepChange = useCallback(
-		(index) => setCurrentStepIndex(index),
+		(index) => {
+			setStepValidationMessage("");
+			setCurrentStepIndex(index);
+		},
 		[],
 	);
 
@@ -133,6 +159,7 @@ function App() {
 		} catch {
 			// ignore
 		}
+		setStepValidationMessage("");
 	}, [formik]);
 
 	const handleExportPdf = useCallback(() => {
@@ -164,6 +191,12 @@ function App() {
 							/>
 
 							<div className="mt-6">{content}</div>
+
+							{stepValidationMessage && (
+								<div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+									{stepValidationMessage}
+								</div>
+							)}
 
 							<Footer
 								onPrevious={handlePrevious}
