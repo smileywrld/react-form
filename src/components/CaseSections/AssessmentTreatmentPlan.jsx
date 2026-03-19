@@ -236,7 +236,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={provisionalDiagnosis.includes(opt)}
 									onChange={() => toggleArrayField("provisionalDiagnosis", opt)}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -284,7 +284,7 @@ const AssessmentTreatmentPlan = () => {
 																	[row]: e.target.value,
 																})
 															}
-															className="custom-radio"
+															className="custom-checkbox"
 														/>
 														<span className="text-sm text-gray-700">
 															{f}
@@ -314,7 +314,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={parentRecommendations.includes(opt)}
 									onChange={() => toggleArrayField("parentRecommendations", opt)}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -338,7 +338,7 @@ const AssessmentTreatmentPlan = () => {
 									onChange={() =>
 										toggleArrayField("assessmentRecommendations", opt)
 									}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -360,7 +360,7 @@ const AssessmentTreatmentPlan = () => {
 									type="checkbox"
 									checked={followupTimeline.includes(opt)}
 									onChange={() => toggleArrayField("followupTimeline", opt)}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>

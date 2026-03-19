@@ -100,7 +100,7 @@ const InterventionPlan = () => {
 											e.target.value,
 										)
 									}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>
@@ -163,7 +163,7 @@ const InterventionPlan = () => {
 											e.target.value,
 										)
 									}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt.label}</span>
 							</label>
@@ -184,7 +184,7 @@ const InterventionPlan = () => {
 									onChange={() =>
 										toggleArrayField("interventionSessionPlan", opt)
 									}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{opt}</span>
 							</label>

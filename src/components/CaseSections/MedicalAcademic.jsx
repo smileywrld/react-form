@@ -56,7 +56,7 @@ const MedicalAcademic = () => {
 									type="checkbox"
 									checked={selectedConditions.includes(c)}
 									onChange={() => toggleCondition(c)}
-									className="custom-radio"
+									className="custom-checkbox"
 								/>
 								<span className="text-sm text-gray-700">{c}</span>
 							</label>
